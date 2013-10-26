@@ -1,0 +1,9 @@
+﻿@model VirtoCommerce.Web.Models.ImageClickableModel
+
+@if (Model != null && Model.TargetUrl != null) 
+{
+	
+    <a href="@Url.Content(Model.TargetUrl)">
+        <img src="@Url.Content(Model.ImageUrl)" />
+    </a>
+}

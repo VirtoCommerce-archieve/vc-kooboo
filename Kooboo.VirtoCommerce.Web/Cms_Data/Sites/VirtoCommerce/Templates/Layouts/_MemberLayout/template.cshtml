@@ -1,0 +1,15 @@
+﻿@{
+	Layout = "../_BaseLayout/template.cshtml";
+}
+
+<div class="main-container col2-left-layout">
+    <div class="main">
+        <div class="col-main">
+            @Html.FrontHtml().Position("Main")
+        </div>
+        <div class="col-left sidebar">
+            @Html.FrontHtml().Position("SideMenu")
+        </div>
+    </div>
+</div>
+

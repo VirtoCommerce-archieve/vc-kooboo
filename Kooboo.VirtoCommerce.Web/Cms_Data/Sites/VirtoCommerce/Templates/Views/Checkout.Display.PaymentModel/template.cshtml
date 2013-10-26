@@ -1,0 +1,16 @@
+﻿@model VirtoCommerce.Web.Models.PaymentModel
+
+@{
+    var tempPrefix = ViewData.TemplateInfo.HtmlFieldPrefix;
+    ViewData.TemplateInfo.HtmlFieldPrefix = Page_Context.Current["HtmlFieldPrefix"];
+}
+
+<input type="hidden" name="Payments.Index" value="@Page_Context.Current["index"]" />
+@Html.HiddenFor(m => m.Name)
+@Html.HiddenFor(m => m.Id)
+@Html.HiddenFor(m => m.DisplayName)
+@Html.FrontHtml().RenderView(string.Format("Checkout.Payments.{0}", Model.Name), ViewData)
+
+@{
+    ViewData.TemplateInfo.HtmlFieldPrefix = tempPrefix;
+}

@@ -1,0 +1,16 @@
+﻿<div class="main-container col1-layout">
+    <div class="main">
+        <div class="col-main">
+            <div class="page-title">
+                <h1>
+                    @("Shopping Cart is Empty".Localize())</h1>
+            </div>
+            <div class="cart-empty">
+                <p>
+                    @("You have no items in your shopping cart.".Localize())</p>
+                <p>
+                    @("Click".Localize())&nbsp;<a href='@Url.FrontUrl().PageUrl("Home")'>@("here".Localize())</a>&nbsp;@("to continue shopping.".Localize())</p>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kooboo.VirtoCommerce.Web", "Kooboo.VirtoCommerce.Web\Kooboo.VirtoCommerce.Web.csproj", "{D906BE0F-6E5D-4AE2-B259-DF72E5382157}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kooboo.VirtoCommerce", "Kooboo.VirtoCommerce\Kooboo.VirtoCommerce.csproj", "{10293E68-856D-43E8-906C-943126B51661}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D906BE0F-6E5D-4AE2-B259-DF72E5382157}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D906BE0F-6E5D-4AE2-B259-DF72E5382157}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D906BE0F-6E5D-4AE2-B259-DF72E5382157}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D906BE0F-6E5D-4AE2-B259-DF72E5382157}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10293E68-856D-43E8-906C-943126B51661}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10293E68-856D-43E8-906C-943126B51661}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10293E68-856D-43E8-906C-943126B51661}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10293E68-856D-43E8-906C-943126B51661}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

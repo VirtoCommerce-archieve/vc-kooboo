@@ -1,0 +1,18 @@
+﻿ @using VirtoCommerce.Web.Client.Extensions 
+@model VirtoCommerce.Web.Models.CatalogItemWithPriceModel
+@{
+    object routesValues = new {url = Model.CatalogItem.ItemId}; 
+    
+    if (!string.IsNullOrEmpty(Model.CatalogItem.ParentItemId))
+    {
+        routesValues = new { url = Model.CatalogItem.ParentItemId, variationId =  Model.CatalogItem.ItemId}; 
+    }
+}
+<td class="item">
+    <a href="@Url.FrontUrl().PageUrl("Product", routesValues)" title="@Model.DisplayName" class="product-image" style="width:125px; height: 125px;" >
+        <img class="primaryimage" src="@Url.Image(Model.CatalogItem.Item, "primaryimage")" width="125" height="125" alt="@Model.CatalogItem.Code" onerror="this.onerror=null;this.src='@Href("~/Content/themes/default/images/blank.png")';" />
+    </a>
+    <p class="product-name">
+        <a href="@Url.FrontUrl().PageUrl("Product", routesValues)" title="@Model.DisplayName">@Model.DisplayName</a>
+    </p>
+</td>

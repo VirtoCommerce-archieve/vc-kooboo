@@ -1,0 +1,8 @@
+﻿@model VirtoCommerce.Web.Models.FlashModel
+
+@if (Model != null)
+{
+    <object height="@Model.Height" width="@Model.Width" classid="@Model.ClassId">
+        <object height="@Model.Height" width="@Model.Width" data="@Model.Src" type="application/x-shockwave-flash"></object>
+    </object>
+}

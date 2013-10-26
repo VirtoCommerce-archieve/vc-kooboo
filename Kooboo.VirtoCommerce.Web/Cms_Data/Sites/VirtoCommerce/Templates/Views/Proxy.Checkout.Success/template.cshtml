@@ -1,0 +1,96 @@
+﻿@using VirtoCommerce.Web.Client.Helpers 
+@using VirtoCommerce.Web.Virto.Helpers
+@model VirtoCommerce.Foundation.Orders.Model.Order
+
+<script type="text/javascript">
+    VirtoCommerce.BaseUrl = '@Url.ModuleUrl().Action("Add", "Cart").Replace("/Cart/Add", "")';
+</script>
+
+<div class="main-container col2-left-layout">
+    <div class="main">
+        <div class="col-main">
+            <div class="page-title">
+                <h1>@("Your order has been received".Localize())</h1>
+            </div>
+            <h2 class="sub-title">@("Thank you for your purchase!".Localize())</h2>
+
+            <p>@("Your order # is:".Localize()) @Html.ActionLink(Model.TrackingNumber, "ViewOrder", "Account", new { orderId = Model.OrderGroupId }, new {id="OrderTrackingNumber"}).</p>
+            <p>@("You will receive an order confirmation email with details of your order and a link to track its progress.".Label())</p>
+
+
+
+            <div class="buttons-set">
+	            <button onclick="$.redirect('@UserHelper.CustomerSession.LastShoppingPage');" title="@("Continue Shopping".Localize())" class="button" type="button">
+		            <span><span>@("Continue Shopping".Localize())</span></span>
+	            </button>
+            </div>
+        </div>
+        <div class="col-left sidebar">
+            <div class="block block-cart">
+                <div class="block-title">
+                    <strong><span>@("My Cart".Localize())</span></strong>
+                </div>
+                <div class="block-content">
+                    @{Html.ModuleHtml().RenderAction("MiniView", "Cart");}
+                </div>
+            </div>
+            <div class="block block-list block-compare">
+                <div class="block-title">
+                    <strong><span>@("Compare Products".Localize())</span></strong>
+                </div>
+                <div class="block-content">
+                    @{Html.ModuleHtml().RenderAction("MiniCompareList", "Account");}
+                </div>
+            </div>
+            <div class="block block-reorder">
+                <div class="block-title">
+                    <strong><span>@("My Orders".Localize())</span></strong>
+                </div>
+                <form id="reorder-validate-detail" action="#" method="post">
+                    <div class="block-content">
+                        <p class="block-subtitle">@("Last Ordered Items".Localize())</p>
+                        <ol id="cart-sidebar-reorder">
+                            @foreach (var orderItem in Model.OrderForms.SelectMany(of => of.LineItems))
+                            {
+	                            string promotionId;
+								if (PromotionHelper.IsPromotion(orderItem.CatalogItemId, out promotionId) && orderItem.Discounts.Any(x => x.PromotionId == promotionId))
+								{
+									continue;
+								}
+
+
+                                object routesValues = new { url = orderItem.CatalogItemId };
+
+                                if (!string.IsNullOrEmpty(orderItem.ParentCatalogItemId))
+                                {
+                                    routesValues = new { url = orderItem.ParentCatalogItemId, variationId = orderItem.CatalogItemId };
+                                }
+
+								
+                                <li class="item last odd">
+                                    <input type="checkbox" 
+                                        class="checkbox validate-one-required-by-name" 
+                                        title="@("Add to Cart".Localize())" 
+                                        value="@orderItem.CatalogItemId" 
+                                        id="reorder_item_@orderItem.CatalogItemId" 
+                                        name="order_items[]">
+
+                                    <p class="product-name">
+	                                    <a href="@Url.FrontUrl().PageUrl("Product", routesValues)">
+		                                    @orderItem.DisplayName
+	                                    </a>
+                                    </p>
+                                </li>
+                            }
+                        </ol>
+                        <div id="cart-sidebar-reorder-advice-container"></div>
+                        <div class="actions">
+                            @Html.FrontHtml().RenderView("Shared.AddToCart",new ViewDataDictionary(ViewData){Model = null}, new{View = "Orders"})
+                            <a href="@Url.Action("Orders","Account")">@("View All".Localize())</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

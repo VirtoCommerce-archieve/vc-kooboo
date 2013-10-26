@@ -1,0 +1,24 @@
+﻿ @using VirtoCommerce.Web.Client.Extensions 
+@model VirtoCommerce.Web.Models.LineItemModel
+
+@{
+    object routesValues = new {url = Model.CatalogItem.ItemId}; 
+    
+    if (!string.IsNullOrEmpty(Model.CatalogItem.ParentItemId))
+    {
+        routesValues = new { url = Model.CatalogItem.ParentItemId, variationId =  Model.CatalogItem.ItemId}; 
+    }
+}
+
+<li id='compare-@Model.LineItemId' class="item">
+	@Html.HiddenFor(m => m.LineItemId)
+	@Ajax.ModuleAjax().ActionLink("Remove item".Localize(), "RemoveFromCompareList", "Cart", new { lineItemId = Model.LineItemId }, new AjaxOptions
+		{
+			HttpMethod = "POST", 
+			Confirm = "Are you sure you would like to remove this item from the comparing list?".Localize(), 
+			OnSuccess = "VirtoCart.onCompareListUpdate"
+		}, new { @class = "btn-remove" })
+	<p class="product-name">
+		<a href="@Url.FrontUrl().PageUrl("Product", routesValues)">@Model.DisplayName</a>
+	</p>
+</li>

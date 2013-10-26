@@ -1,0 +1,41 @@
+﻿@using VirtoCommerce.Web.Client.Extensions 
+@using Kooboo.VirtoCommerce.Extensions 
+@model VirtoCommerce.Web.Models.LineItemModel
+
+@{
+    object routesValues = new {url = Model.CatalogItem.ItemId}; 
+    
+    if (!string.IsNullOrEmpty(Model.CatalogItem.ParentItemId))
+    {
+        routesValues = new { url = Model.CatalogItem.ParentItemId, variationId =  Model.CatalogItem.ItemId}; 
+    }
+}
+
+<li class="item 
+	@String.Format("{0}",ViewBag.Index == ViewBag.Total-1 ? "last" : "") 
+	@String.Format("{0}",ViewBag.Index % 2 == 0 ? "odd" : "even")" 
+    id="@String.Format("row-{0}", Model.LineItemId)">
+	<a href="@Url.FrontUrl().PageUrl("Product", routesValues)" title="@Model.DisplayName" class="product-image">
+		      <img src="@Url.Image(Model.CatalogItem.Item, "primaryimage")" width="50" height="50" alt="@Model.DisplayName" onerror="this.onerror=null;this.src='@Href("~/Content/themes/default/images/blank.png")';" /></a>
+	<div class="product-details">
+		@if (!Model.IsPromotion)
+		{
+			@Ajax.ModuleAjax().ActionLinkEx("Remove this item".Localize(), "Remove", "Cart",
+			                 new {lineItemId = Model.LineItemId, sourceView = "MiniCart"},
+			                 new AjaxOptions
+				                 {
+					                 HttpMethod = "POST",
+					                 Confirm = "Are you sure you would like to remove this item from the shopping cart?".Localize(),
+					                 OnSuccess = "VirtoCart.onUpdate"
+				                 }, new {@class = "btn-remove"})
+
+			@Html.ModuleHtml().ActionLink("Edit".Localize(), "Configure","Cart",
+			                 new {lineItemId = Model.LineItemId},
+			                 new {title = "Edit item".Localize(), @class = "btn-edit"})
+		}
+
+		<p class="product-name">
+			<a href="@Url.FrontUrl().PageUrl("Product", routesValues)">@Model.DisplayName</a></p>
+		<strong>@Model.Quantity</strong> x <span class="price">@Model.FormattedPlacedPrice</span>
+	</div>
+</li>

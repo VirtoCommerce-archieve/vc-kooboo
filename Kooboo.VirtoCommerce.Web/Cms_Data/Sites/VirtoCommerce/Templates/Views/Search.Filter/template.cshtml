@@ -1,0 +1,39 @@
+﻿@using VirtoCommerce.Web.Client.Extensions
+
+@model VirtoCommerce.Web.Models.CatalogItemSearchModel
+                <div class="block-title">
+                    <strong><span>@("Shop By".Localize())</span></strong>
+                </div>
+                <div class="currently">
+                    @if (Model.SelectedFilters != null && Model.SelectedFilters.Count > 0)
+                    {
+                        <p class="block-subtitle">@("Currently Shopping by:".Localize())</p>
+                        <ol>
+                        @foreach (var filter in Model.SelectedFilters)
+                         {
+                            <li><a class="btn-remove" title="@("Remove This Item".Localize())" href="@Url.RemoveFacet(filter.Filter.Key)">@("Remove This Item".Localize())</a>
+                            <span class="label">@filter.Filter.Name.Localize():</span> @filter.Facet.Name</li>
+                         }
+
+                         </ol>
+                    <div class="actions"><a href="@Url.RemoveAllFacets()">@("Clear All".Localize())</a></div>
+                    }   
+                </div>
+                <div class="block-content">
+                    @if (Model.FilterGroups != null && Model.FilterGroups.Any())
+                    {
+                    <p class="block-subtitle">@("Shopping Options".Label())</p>
+                    <dl id="narrow-by-list">
+                    @foreach (var group in Model.FilterGroups)
+                    {
+                        @:<dt>@group.Name.Localize()</dt>
+                        @:<dd><ol>
+                        foreach (var facet in group.Facets)
+                        {
+                            @:<li><a href="@Url.SetFacet(group.Key, facet.Key)">@facet.Name</a> (@facet.Count)</li>
+                        }
+                        @:</ol></dd>
+                    }
+                     </dl>
+                    }
+                </div> 

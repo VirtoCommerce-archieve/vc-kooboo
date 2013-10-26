@@ -1,0 +1,33 @@
+﻿@using VirtoCommerce.Foundation.Marketing.Model.DynamicContent
+@using VirtoCommerce.Web.Models
+@model BannerModel
+
+@foreach (var item in Model.Items)
+{
+
+    if (item.ContentTypeId == DynamicContentType.Html.ToString())
+    {
+        @Html.FrontHtml().RenderView("Proxy.Banner.Html", new RawHtmlModel(item))
+    }
+
+    if (item.ContentTypeId == DynamicContentType.Flash.ToString())
+    {
+        @Html.FrontHtml().RenderView("Proxy.Banner.Flash", new FlashModel(item))
+    }
+
+    if (item.ContentTypeId == DynamicContentType.ImageNonClickable.ToString())
+    {
+        @Html.FrontHtml().RenderView("Proxy.Banner.ImageNonClickable", new ImageNonClickableModel(item))
+    }
+
+    if (item.ContentTypeId == DynamicContentType.ImageClickable.ToString())
+    {
+        @Html.FrontHtml().RenderView("Proxy.Banner.ImageClickable", new ImageClickableModel(item))
+    }
+
+    if (item.ContentTypeId == DynamicContentType.ProductWithImageAndPrice.ToString())
+    {
+        @Html.FrontHtml().RenderView("Proxy.Banner.ProductWithImageAndPrice", new ProductWithImageAndPriceModel(item))
+    }
+
+}

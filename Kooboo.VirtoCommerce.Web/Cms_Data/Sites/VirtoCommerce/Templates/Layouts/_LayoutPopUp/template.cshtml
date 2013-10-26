@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+	@Html.FrontHtml().HtmlTitle()
+	@Html.FrontHtml().Meta()
+	@Html.FrontHtml().RegisterStyles()
+    <link href="@Url.FrontUrl().ThemeFileUrl("other/print.css")" rel="stylesheet" type="text/css" media="print" />
+
+     @Html.FrontHtml().RegisterScripts()
+    <script src="@Url.FrontUrl().ScriptFileUrl("v/virto-commerce.js")" type="text/javascript"></script>
+    <script src="@Url.FrontUrl().ScriptFileUrl("v/virto-jquery.js")" type="text/javascript"></script>
+    
+    <base href="~/" />
+	
+	<script type="text/javascript">
+		$(document).ready(function() {
+			window.isPopup = true;
+		});
+	</script>
+</head>
+<body class="page-popup catalog-product-compare-index" sitePath="@Url.Content(Url.FrontUrl().Site.VirtualPath)">
+    <div>
+        <div class="page-title title-buttons">
+            <h1>@Page_Context.Current.HtmlMeta.HtmlTitle</h1>
+            <a class="link-print" onclick="window.print(); return false;" href="#">
+                @("Print This Page".Localize())
+            </a>
+        </div>
+			@Html.FrontHtml().Position("Main")    
+    </div>
+</body>
+</html>

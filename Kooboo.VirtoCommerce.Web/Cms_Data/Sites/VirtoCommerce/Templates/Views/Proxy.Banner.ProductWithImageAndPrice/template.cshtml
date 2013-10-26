@@ -1,0 +1,7 @@
+﻿@using VirtoCommerce.Web.Models
+@model VirtoCommerce.Web.Models.ProductWithImageAndPriceModel
+
+@if (Model != null)
+{
+    @Html.FrontHtml().RenderView("Catalog.MiniItem", ViewData, new { itemId = Model.ProductCode, displayOptions = ItemDisplayOptions.ItemMedium})
+}

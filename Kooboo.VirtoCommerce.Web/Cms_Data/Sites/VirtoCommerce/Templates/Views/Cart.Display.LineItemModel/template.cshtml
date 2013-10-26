@@ -1,0 +1,25 @@
+﻿ @using VirtoCommerce.Web.Client.Extensions 
+@using VirtoCommerce.Web.Client.Helpers 
+@model VirtoCommerce.Web.Models.LineItemModel
+@{ 
+	var cartType = "cart".Localize();
+	if (Request["name"] == CartHelper.WishListName)
+	{
+			cartType = "wish list".Localize();		
+	}
+	else if (Request["name"] == CartHelper.CompareListName)
+	{
+		cartType = "compare list".Localize();
+	}
+}
+    <div id="entry-thickbox">
+        <div class="row">
+            <div class="image">
+                <img id="image" src="@Url.Image(Model.CatalogItem.Item, "primaryimage")" width="47" height="55" alt="" onerror="this.onerror=null;this.src='@Href("~/Content/themes/default/images/blank.png")';" />
+            </div>
+	        <div class="desc">
+		        @("The product ".Localize()) <a href='@Url.ItemUrl(Model.CatalogItem.Item, Model.ParentCatalogItem)'>@Model.DisplayName</a> @string.Format((" has been added to your {0}.").Localize(), cartType)
+	        </div>
+        </div>
+    </div>
+

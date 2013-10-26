@@ -1,0 +1,22 @@
+﻿@using VirtoCommerce.Web.Client.Helpers
+@using VirtoCommerce.Web.Virto.Helpers
+@model VirtoCommerce.Web.Models.PaymentModel
+@{
+    var contract = UserHelper.GetCurrentUserContract();
+
+    if (contract != null)
+    {
+
+        <fieldset class="form-list">
+            <ul>
+                <li>@(Html.Raw(string.Format("You have <b>{0}</b> in available credit<br>use this method to pay for your company expenses.".Localize(),
+                StoreHelper.FormatCurrency(contract.SpendingBalance, contract.CreditLimitCurrency))))</li>
+            </ul>
+        </fieldset>
+    }
+    else
+    {
+        @("You have no contract".Localize())
+    }
+
+}

@@ -1,0 +1,30 @@
+﻿@model VirtoCommerce.Web.Models.CompareListModel
+
+<div id="CompareListContainer">
+ @if (Model.LineItems != null && Model.LineItems.Length > 0)
+ {
+	<ol id="compare-items">
+		@for (var i = 0; i < Model.LineItems.Count(); i++)
+		{
+			@Html.FrontHtml().RenderView("Account.Display.CompareLineItem",Model.LineItems[i])
+		}
+
+	</ol>
+	<div class="actions noborder">
+		@Ajax.ModuleAjax().ActionLink("Clear All".Localize(), "ClearCompareList", "Cart", 
+		new AjaxOptions
+		  {
+			  HttpMethod = "POST", 
+			  Confirm = "Are you sure you would like to remove this item from the compare products?".Localize(), 
+			  OnSuccess = "VirtoCart.onCompareListUpdate"
+		  })
+		<button onclick="$.popup('@Url.FrontUrl().PageUrl("Compare")', null, null, true)" class="button" title="@("Compare".Localize())" type="button">
+			<span><span>@("Compare".Localize())</span></span>
+		</button>
+	</div>
+ }
+ else
+ {
+	 <p class="empty">@("You have no items in your compare list.".Localize())</p>
+ }
+</div>

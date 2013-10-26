@@ -1,0 +1,53 @@
+﻿ @model VirtoCommerce.Web.Models.CartModel
+           
+<table class="onestepcheckout-summary data-table cart-table">
+    <thead>
+        <tr>
+            <th class="name">@("Product".Localize())</th>
+            <th class="qty">@("Qty".Localize())</th>
+            <th class="total">@("Subtotal".Localize())</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.LineItems)
+    {
+        @Html.FrontHtml().RenderView("Checkout.Display.LineItem", item)
+    }
+    </tbody>
+</table>
+<table class="onestepcheckout-totals">
+    <tbody>
+        <tr>
+            <td class="title">
+                @("Subtotal".Localize())
+            </td>
+            <td class="value">
+                <span class="price">@Model.SubTotalPriceFormatted</span>
+            </td>
+        </tr>
+	    <tr>
+		    <td class="title">
+			    @("Shipping".Localize())
+		    </td>
+		    <td class="value">
+			    <span class="price">@Model.ShippingPriceFormatted</span>
+		    </td>
+	    </tr>
+		<tr>
+            <td class="title">
+                @("Tax total".Localize())
+            </td>
+            <td class="value">
+                <span class="price">@Model.TaxTotalPriceFormatted</span>
+            </td>
+        </tr>
+        <tr class="grand-total">
+            <td class="title">
+                @("Grand total".Localize())
+            </td>
+            <td class="value">
+                <span class="price">@Model.TotalPriceFormatted</span>
+            </td>
+        </tr>
+    </tbody>
+</table>

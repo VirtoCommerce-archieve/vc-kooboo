@@ -1,0 +1,24 @@
+﻿@using VirtoCommerce.Web.Client.Extensions 
+@model VirtoCommerce.Web.Models.CatalogItemWithPriceModel
+
+@{
+    object routesValues = new {url = Model.CatalogItem.ItemId}; 
+    
+    if (!string.IsNullOrEmpty(Model.CatalogItem.ParentItemId))
+    {
+        routesValues = new { url = Model.CatalogItem.ParentItemId, variationId =  Model.CatalogItem.ItemId}; 
+    }
+}
+<a href="@Url.FrontUrl().PageUrl("Product", routesValues)" title="@Model.DisplayName" class="product-image">
+    <img src="@Url.Image(Model.CatalogItem.Item, "primaryimage")" width="170" height="170" alt="@Model.DisplayName" onerror="this.onerror=null;this.src='@Href("~/Content/themes/default/images/blank.png")';" /></a>
+<h2 class="product-name">
+    <a href="@Url.FrontUrl().PageUrl("Product", routesValues)" title="@Model.DisplayName">@Model.DisplayName</a></h2>
+<div class="price-box">
+    @if (Model.Price != null){
+        @Html.FrontHtml().RenderView("Shared.Price",Model.Price)
+    }
+</div>
+<div class="actions">
+   @Html.FrontHtml().RenderView("Shared.AddToCart", ViewData, new {View = "List"})
+   @Html.FrontHtml().RenderView("Shared.AddToLinks", ViewData)
+</div>

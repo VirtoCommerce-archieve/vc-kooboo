@@ -1,0 +1,8 @@
+﻿@Html.Action("DisplayItemById", "Catalog", 
+new {itemId = Page_Context.Current["itemId"], 
+    name = Page_Context.Current["name"], 
+    parentItemId = Page_Context.Current["parentItemId"],
+    forcedActive = Page_Context.Current["forcedActive"],
+    responseGroups = Page_Context.Current["responseGroups"],
+    displayOptions = Page_Context.Current["displayOptions"],
+    area = "VirtoCommerce"})

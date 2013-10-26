@@ -1,0 +1,19 @@
+﻿@using VirtoCommerce.Web.Models
+
+@model PriceModel
+
+@if (Model.Type == PriceType.Sale)
+{
+    <p class="old-price">
+        <span class="price-label">@("Regular Price:".Localize())</span> <span class="price">@Model.ListPriceFormatted</span>
+    </p>
+    <p class="special-price">
+        <span class="price-label">@("Special Price:".Localize())</span> <span class="price">@Model.SalePriceFormatted</span>
+    </p>
+}
+else if(Model.Type == PriceType.Regular)
+{
+    <p class="regular-price">
+        @Model.PriceTitle.Localize()&nbsp;<span class="price">@Model.ListPriceFormatted</span>
+    </p>
+}

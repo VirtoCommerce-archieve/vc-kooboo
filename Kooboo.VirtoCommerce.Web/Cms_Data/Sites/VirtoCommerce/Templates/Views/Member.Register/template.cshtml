@@ -1,0 +1,83 @@
+﻿@using VirtoCommerce.Web.Client.Extensions
+@model Kooboo.VirtoCommerce.Model.VirtoRegisterMemberModel
+
+<div class="main-container col1-layout">
+    <div class="main">
+        <div class="col-main">
+            @Html.ValidationSummary(false, "Account creation was unsuccessful. Please correct the errors and try again.")
+            <div class="account-create">
+                <div class="page-title">
+                    <h1>Create an Account</h1>
+                </div>
+                <form class="ajaxForm" action="@Url.FrontUrl().SubmissionUrl("RegisterMember")" method="post">
+                               
+                    @Html.AntiForgeryToken()
+
+                    <div class="fieldset">
+                        <h2 class="legend">Personal Information</h2>
+                        <ul class="form-list">
+                            <li class="fields">
+                                <div class="customer-name">
+                                    <div class="field name-firstname">
+                                        @Html.LabelForEx(m => m.FirstName)
+										<div class="input-box">
+											@Html.TextBoxFor(m => m.FirstName, new { @class = "input-text" })
+										</div>
+                                    </div>
+                                    <div class="field name-lastname">
+                                       @Html.LabelForEx(m => m.LastName)
+										<div class="input-box">
+											@Html.TextBoxFor(m => m.LastName, new { @class = "input-text" })
+										</div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                               @Html.LabelForEx(m => m.Email)
+								<div class="input-box">
+									@Html.TextBoxFor(m => m.Email, new { @class = "input-text" })
+								</div>
+                            </li>
+                            <li class="control">
+                                <div class="input-box">
+									<input type="checkbox" class="checkbox" id="is_subscribed" value="1" title="@("Sign Up for Newsletter".Localize())" name="is_subscribed">
+								</div>
+								<label for="is_subscribed">@("Sign Up for Newsletter".Localize())</label>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="fieldset">
+                        <h2 class="legend">Login Information</h2>
+                        <ul class="form-list">
+                            <li>
+                                <label class="required" for="username"><em>*</em>@("Username".Label())</label>
+                                <div class="input-box">
+                                    <input id="UserName" name="UserName" class="input-text" type="text" autocomplete="off" @((new[] { Validator.Required("Required".RawLabel().ToString()).ClientValidationRule }).GenerateHtmlAttributes()) />
+                                </div>
+                            </li>
+                            <li class="fields">
+                                <div class="field">
+									@Html.LabelForEx(m => m.Password)
+									<div class="input-box">
+										@Html.PasswordFor(m => m.Password, new { @class = "input-text" })
+									</div>
+								</div>
+								<div class="field">
+									@Html.LabelForEx(m => m.ConfirmPassword)
+									<div class="input-box">
+										@Html.PasswordFor(m => m.ConfirmPassword, new { @class = "input-text" })
+									</div>
+								</div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="buttons-set">
+                        <p class="required">* Required Fields</p>
+                        <p class="back-link"><a class="back-link" href="@Url.FrontUrl().PageUrl("Member/Login")"><small>« </small>Back</a></p>
+                        <button id="send2" name="send" title="Submit" class="button" type="submit"><span><span>Submit</span></span></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

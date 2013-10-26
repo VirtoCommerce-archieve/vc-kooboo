@@ -1,0 +1,36 @@
+﻿@model dynamic
+@using VirtoCommerce.Web.Models
+@using VirtoCommerce.Web.Virto.Helpers
+<div class="quick-access">
+
+    @if (UserHelper.CustomerSession.IsRegistered)
+    {
+        <p class="welcome-msg">Welcome @Model.CustomerName!</p>
+    }
+    else
+    {
+        <p class="welcome-msg">Welcome!</p>
+    }
+    <ul class="links">
+        <li class="first">
+            <a href="@Url.FrontUrl().PageUrl("Member")" title="@("My Account".Localize())">@("My Account".Localize())</a>
+        </li>
+        <li>@Html.FrontHtml().RenderView("Proxy.Store.WishListLink", Model.WishList)</li>
+        <li>@Html.FrontHtml().RenderView("Proxy.Store.CartLink", Model.Cart)</li>
+        <li><a href="@Url.FrontUrl().PageUrl("Checkout")" title="@("Checkout".Localize())" class="top-link-checkout">@("Checkout".Localize())</a></li>
+
+        @if (UserHelper.CustomerSession.IsRegistered)
+        {
+            <li class=" last">
+                <form action="@Url.FrontUrl().SubmissionUrl("SignOutMember")" method="post" id="logoutForm">
+                    @Html.AntiForgeryToken()
+                    <a href="javascript:document.getElementById('logoutForm').submit()">@("Log Off".Localize())</a>
+                </form>
+            </li>
+        }
+        else
+        {
+            <li class=" last"><a href="@Url.FrontUrl().PageUrl("Member/Login")">@("Log On".Localize())</a></li>
+        }
+    </ul>
+</div>

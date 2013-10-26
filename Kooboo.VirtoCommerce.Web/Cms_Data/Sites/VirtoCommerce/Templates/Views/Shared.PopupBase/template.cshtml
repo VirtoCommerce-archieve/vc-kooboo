@@ -1,0 +1,14 @@
+﻿ @using VirtoCommerce.Web.Virto.Helpers.Popup
+
+@if (Model.Type == PopupType.Button)
+{
+	<button type="button" class="button @Model.ButtonCssClass" title="@Model.ButtonText" onclick="tb_show('@Model.PopupTitle', '@Model.ViewName', false)">
+		<span><span>
+			@Model.ButtonText
+		</span></span>
+	</button>
+}
+else
+{
+	<a onclick="tb_show('@Model.PopupTitle', VirtoCommerce.url('@Model.ViewName'), false); return false;" class="@Model.ButtonCssClass" href="#">@Model.ButtonText</a>
+}

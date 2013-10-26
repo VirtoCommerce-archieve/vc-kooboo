@@ -1,0 +1,33 @@
+﻿@using VirtoCommerce.Web.Client.Helpers 
+@model List<VirtoCommerce.Web.Models.LineItemModel>
+@{
+    ViewBag.Title = "Add".Localize();
+}
+    <div>
+        @foreach (var li in Model)
+        {
+            @Html.FrontHtml().RenderView("Cart.Display.LineItemModel", li)
+        }
+        <div style="text-align: center;">
+	        <button type="button" title="@("Continue Shopping".Localize())" class="button btn-cart" onclick="tb_remove(); VirtoCart.updateMiniCart('@Request["name"]'); return false;" style="width:140px;">
+		        <span><span>@("Continue Shopping".Localize())</span></span>
+	        </button>
+            @if (!String.IsNullOrEmpty(Request["name"]) && Request["name"] == CartHelper.WishListName)
+            {
+	            <button type="button" title="@("View My Wish List".Localize())" class="button btn-cart" onclick="tb_remove(); $.open('@Url.FrontUrl().PageUrl("WishList")'); return false;" style="width:140px;">
+		            <span><span>@("View My Wish List".Localize())</span></span>
+	            </button>
+            }
+            else if (Request["name"] == CartHelper.CompareListName)
+            {
+            }
+            else
+            {
+	            <button type="submit" title="@("View My Cart".Localize())" class="button btn-cart" onclick="tb_remove(); $.open('@Url.FrontUrl().PageUrl("MyCart")'); return false;" style="width:140px;">
+		            <span><span>@("View My Cart".Localize())</span></span>
+	            </button>
+            }
+
+        </div>
+    </div>
+

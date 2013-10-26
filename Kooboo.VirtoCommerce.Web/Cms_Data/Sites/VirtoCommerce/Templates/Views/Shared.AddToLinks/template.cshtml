@@ -1,0 +1,18 @@
+﻿@model VirtoCommerce.Web.Models.CatalogItemWithPriceModel
+
+@if (Model != null)
+{
+    <ul class="add-to-links">
+        <li>
+            <a href="#" onclick=" return VirtoCart.addToWishList('@("Item added to wish list".Localize())', '@Url.Encode(Model.CatalogItem.ItemId)','@Url.Encode(Model.CatalogItem.ParentItemId)', 1)" 
+                class="link-wishlist">@("Add to Wishlist".Localize())</a></li>
+        @if (!Page_Context.Current["NoCompare"])
+        {
+            <li>
+                <span class="separator">|</span> 
+                <a href="#" onclick="return VirtoCart.addToCompareList('@("Item added to compare list".Localize())', '@Url.Encode(Model.CatalogItem.ItemId)','@Url.Encode(Model.CatalogItem.ParentItemId)', 1)"
+                                                          class="link-compare">@("Add to Compare".Localize())</a>
+            </li>
+        }
+    </ul>
+}

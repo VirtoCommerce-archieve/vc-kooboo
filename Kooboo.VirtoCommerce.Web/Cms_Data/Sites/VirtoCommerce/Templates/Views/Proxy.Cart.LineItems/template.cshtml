@@ -1,0 +1,8 @@
+﻿@model VirtoCommerce.Web.Models.CartModel
+
+@for (var i = 0; i < Model.LineItems.Count(); i++)
+{
+    @Html.FrontHtml().RenderView("Cart.Editor.LineItem",
+    new ViewDataDictionary(ViewData) {Model = Model.LineItems[i]}, 
+    new {HtmlFieldPrefix = string.Format("LineItems[{0}]",i)})
+}

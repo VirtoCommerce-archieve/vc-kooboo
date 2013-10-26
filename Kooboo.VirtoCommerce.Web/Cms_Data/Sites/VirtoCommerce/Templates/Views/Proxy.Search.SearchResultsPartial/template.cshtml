@@ -1,0 +1,106 @@
+﻿@using VirtoCommerce.Web.Client.Globalization
+@model VirtoCommerce.Web.Models.CatalogItemSearchModel
+
+<script type="text/javascript">
+    VirtoCommerce.BaseUrl = '@Url.ModuleUrl().Action("Add", "Cart").Replace("/Cart/Add","")';
+</script>
+           
+<div class="main-container col2-left-layout">
+    <div class="main">
+        <div class="col-main">
+                <ul class="messages" id="messages">
+                </ul>
+            <div class="page-title category-title">
+                <a href="#"
+                    class="link-rss">@("Subscribe to RSS Feed".LocalizeHtml())</a>
+                <h1>@ViewBag.Title</h1>
+            </div>
+            @if (Model.Pager.TotalCount == 0)
+            {
+            <p class="note-msg">@("There are no results available.".LocalizeHtml())</p>
+            }
+            else
+            {
+            <div class="category-products">
+	            <div class="toolbar">
+		           @Html.FrontHtml().RenderView("Search.Pager", Model.Pager)
+	            </div>
+                    @{
+                var index = 0;   
+                    }
+                    @foreach (var item in Model.CatalogItems)
+                    {
+                        if (index % 4 == 0)
+                        {
+                            @:<ul class="products-grid">
+                            @:<li class="item first">
+                        }
+                        else if ((index + 1) % 4 == 0)
+                        {
+                            @:<li class="item last">
+                        }
+                        else
+                        {
+                            @:<li class="item">
+                        }
+                        @Html.FrontHtml().RenderView("Search.Item",item)
+                        index = index + 1;
+                        if (index % 4 == 0 || index == Model.CatalogItems.Count())
+                        {
+                            @:</li>
+                            @:</ul>
+                        }
+                        else
+                        {
+                            @:</li>
+                        }
+
+                    }
+	            <div class="toolbar-bottom">
+	                <div class="toolbar">
+	                    @Html.FrontHtml().RenderView("Search.Pager", Model.Pager)
+	                </div>
+	            </div>
+            </div>
+            }
+        </div>
+        <div class="col-left sidebar">
+            <div class="block block-currency">
+                <div class="block-title">
+                    <strong>
+                        <span>@("Select Your Currency.".LocalizeHtml())</span>
+                    </strong>
+                </div>
+                <div class="block-content">
+                  @{Html.ModuleHtml().RenderAction("Currencies", "Store");}
+                </div>
+            </div>
+            <div class="block block-layered-nav">
+                 @Html.FrontHtml().RenderView("Search.Filter", Model)
+            </div>
+            <div class="block block-cart">
+                <div class="block-title">
+                    <strong><span>@("My Cart".LocalizeHtml())</span></strong>
+                </div>
+                <div class="block-content">
+                    @{Html.ModuleHtml().RenderAction("MiniView", "Cart");}
+                </div>
+            </div>
+            <div class="block block-list block-compare">
+                <div class="block-title">
+                    <strong><span>@("Compare Products".LocalizeHtml())</span></strong>
+                </div>
+                <div class="block-content">
+					@{Html.ModuleHtml().RenderAction("MiniCompareList", "Account");}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(window).load(function () {
+        $('#slider').nivoSlider({
+            pauseTime: 5000
+        });
+    });
+</script>

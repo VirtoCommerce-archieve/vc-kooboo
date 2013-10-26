@@ -1,0 +1,24 @@
+﻿ @model VirtoCommerce.Web.Models.CartModel
+<div id="MiniCartContainer">
+@using (Ajax.ModuleAjax().BeginForm(new AjaxOptions { UpdateTargetId = "MiniCartContainer" }))
+{
+	<div class="summary">
+		<p class="amount">
+			@("There are".Localize()) <a href="@Url.FrontUrl().PageUrl("MyCart")"><span id="cart-count">@Model.LineItems.Count() @("items".Localize())</span></a> @("in your cart".Localize()).</p>
+		<p class="subtotal">
+			<span class="label">@("Cart Subtotal:".Localize())</span> <span class="price" id="cart-subtotal">@Model.SubTotalPriceFormatted</span>
+		</p>
+	</div>
+	<p class="block-subtitle">
+		@("Recently added item(s)".Localize())</p>
+	<ol class="mini-products-list" id="cart-sidebar">
+		@for (var i = 0; i < Model.LineItems.Count(); i++)
+		{
+		    var viewData = new ViewDataDictionary(ViewData) {Model = Model.LineItems[i]};
+            viewData.Add("index",i);
+            viewData.Add("total", Model.LineItems.Count());
+            @Html.FrontHtml().RenderView("Cart.Editor.MiniLineItem",  viewData)	
+		}
+	</ol>
+}
+</div>

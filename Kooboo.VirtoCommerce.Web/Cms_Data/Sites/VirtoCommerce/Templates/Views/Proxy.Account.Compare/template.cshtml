@@ -1,0 +1,134 @@
+﻿ @using VirtoCommerce.Web.Client.Extensions @using VirtoCommerce.Web.Virto.Helpers
+@model VirtoCommerce.Web.Models.CompareListModel
+@{
+    var percentColumn = Model.LineItems == null ? 100 : 100 / (Model.LineItems.Count() + 1);
+}
+<script type="text/javascript">
+    VirtoCommerce.BaseUrl = '@Url.ModuleUrl().Action("Add", "Cart").Replace("/Cart/Add", "")';
+    $(document).ready(function ()
+    {
+        $('table#product_comparison tbody tr td:last-child').addClass('last');
+    });
+</script>
+@if (Model.LineItems != null)
+{
+    <div>
+        <table id="product_comparison" class="data-table compare-table">
+            <colgroup>
+                <col width="1">
+                @foreach (var li in Model.LineItems)
+                {
+                    <col width="@percentColumn%" />
+                }
+            </colgroup>
+            <thead>
+                <tr class="first last">
+                    <th>&nbsp;
+                    </th>
+                    @foreach (var li in Model.LineItems)
+                    {
+                        <td class="a-right">
+                            @Ajax.ModuleAjax().ActionLink("Remove item".Localize(), "RemoveFromCompareList", "Cart", new { lineItemId = li.LineItemId }, new AjaxOptions
+	                            {
+		                            HttpMethod = "POST", 
+									Confirm = "Are you sure you would like to remove this item from the comparing list?".Localize(), 
+									OnSuccess = "window.location.href=window.location.href"
+	                            }, new { @class = "btn-remove" })
+                        </td>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="product-shop-row first odd">
+                    <th>&nbsp;
+                    </th>
+                    @foreach (var li in Model.LineItems)
+                    {
+                        <td>
+                            <a title="@li.DisplayName" onclick=" ">
+                                <img src="@Url.Image(li.CatalogItem.Item, "primaryimage")" title="" height="125" width="125" alt="@li.DisplayName" onerror="this.onerror=null;this.src='@Href("~/Content/themes/default/images/blank.png")';" />
+                            </a>
+                            <h2 class="product-name">@li.DisplayName</h2>
+                            <div class="price-box">
+                                <span class="regular-price">
+                                    <span class="price">@li.FormattedPlacedPrice</span>
+                                </span>
+                            </div>
+                            @Html.FrontHtml().RenderView("Shared.AddToCart", new ViewDataDictionary(ViewData) { Model = CatalogHelper.CreateCatalogModel(li.CatalogItem.ItemId) }, new { View = "Details" })
+                            @Html.FrontHtml().RenderView("Shared.AddToLinks", new ViewDataDictionary(ViewData) { Model = CatalogHelper.CreateCatalogModel(li.CatalogItem.ItemId) }, new { NoCompare = true })
+                        </td>
+                    }
+                </tr>
+            </tbody>
+            <tbody>
+                <tr class="even">
+                    <th>
+                        <span class="nobr">@("Description".Localize())</span>
+                    </th>
+                    @foreach (var li in Model.LineItems)
+                    {
+                        <td>
+                            @li.DisplayName
+                        </td>
+                    }
+                </tr>
+	            <tr class="odd">
+		            <th>
+			            <span class="nobr">@("SKU".Localize())</span>
+		            </th>
+		            @foreach (var li in Model.LineItems)
+		            {
+			            <td>
+				            @li.CatalogItem.Code
+			            </td>
+		            }
+	            </tr>
+	            @{
+		            var rowClass = "even";
+
+		            foreach (var group in Model.AvailableProperties)
+		            {
+			            <tr class="@rowClass">
+				            <th>
+					            <span class="nobr">@group.Key</span>
+				            </th>
+				            @foreach (var li in Model.LineItems)
+				            {
+					            var prop = group.FirstOrDefault(g => g.CatalogItem.ItemId == li.CatalogItem.ItemId);
+					            <td>
+						            @if (prop != null)
+						            {
+							            @prop.ToString()
+						            }
+						            else
+						            {
+							            <span>@("N/A".Localize())</span>
+						            }
+					            </td>
+				            }
+			            </tr>
+			            rowClass = rowClass == "even" ? "odd" : "even";
+		            }
+	            }
+            </tbody>
+            <tbody>
+                <tr class="add-to-row last odd">
+                    <th>&nbsp;
+                    </th>
+                    @foreach (var li in Model.LineItems)
+                    {
+                        <td>
+                            <div class="price-box">
+                                <span class="regular-price">
+                                    <span class="price">@li.FormattedPlacedPrice</span>
+                                </span>
+                            </div>
+                            @Html.FrontHtml().RenderView("Shared.AddToCart", new ViewDataDictionary(ViewData) { Model = CatalogHelper.CreateCatalogModel(li.CatalogItem.ItemId) }, new{ View = "Details"})
+                            @Html.FrontHtml().RenderView("Shared.AddToLinks", new ViewDataDictionary(ViewData) { Model = CatalogHelper.CreateCatalogModel(li.CatalogItem.ItemId) }, new{ NoCompare = true})
+                        </td>
+                    }
+                </tr>
+            </tbody>
+        </table>
+    </div>
+}

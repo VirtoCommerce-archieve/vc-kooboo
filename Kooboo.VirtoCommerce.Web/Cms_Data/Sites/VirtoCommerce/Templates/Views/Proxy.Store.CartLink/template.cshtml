@@ -1,0 +1,16 @@
+﻿ @using System.Globalization
+@model VirtoCommerce.Web.Models.CartModel
+
+@if (Model.LineItems.Any())
+	{
+	    <a href="@Url.FrontUrl().PageUrl("MyCart")" title="My Cart" class="top-link-cart">
+	        @("My Cart".Localize()) (@Model.LineItems.Count().ToString(CultureInfo.InvariantCulture) @String.Format("{0}", Model.LineItems.Count() > 1 ? "items" : "item"))
+	    </a>
+}
+	else
+	{
+	    <a href="@Url.FrontUrl().PageUrl("MyCart")" title="My Cart" class="top-link-cart">
+	        @("My Cart".Localize())
+	    </a>
+}
+	

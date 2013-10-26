@@ -1,0 +1,15 @@
+﻿    <div class="block block-account">
+        <div class="block-title">
+            <strong><span>@("My Account".Label())</span></strong>
+        </div>
+        <div class="block-content">
+            <ul>
+              <li class="current"><b>Account Dashboard</b></li>
+              <li class="">@Html.FrontHtml().PageLink("Account Information", "Member/Profile")</li>
+              <li class="">@Html.FrontHtml().PageLink("Address Book", "Member/Edit")</li>
+              <li class="">@Html.FrontHtml().PageLink("My Orders", "Member/Profile")</li>
+              <li class="">@Html.FrontHtml().PageLink("My Wishlist", "Member/Profile")</li>
+              <li class="last">@Html.FrontHtml().PageLink("My Returns", "Member/Profile")</li>
+			</ul>
+        </div>
+    </div>

@@ -1,0 +1,25 @@
+﻿@{
+	Layout = "../_BaseLayout/template.cshtml";
+}
+
+<div class="main-container col1-layout">
+            <div class="main">
+                <div class="col-main">
+                    <div class="std">
+                        <div style="float: left; width: 653px;">                            
+                            @Html.FrontHtml().Position("HomeMain")
+                        </div>
+                        <div style="float: right; width: 280px;">
+	                        <div style="margin: 0 0 10px;">
+		                        @Html.FrontHtml().Position("HomeRightTop")
+	                        </div>
+	                        <div>
+		                        @Html.FrontHtml().Position("HomeRightBottom")
+	                        </div>
+                        </div>
+                        <div class="clearer">
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+        </div>

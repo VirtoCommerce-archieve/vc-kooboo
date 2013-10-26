@@ -1,0 +1,27 @@
+﻿ <form action="@Url.FrontUrl().PageUrl("Search")" method="get">
+	<div class="form-search">
+		<label for="search">
+			@("Search".Localize())</label>
+		<input id="search" type="text" name="q" value="" class="input-text" />
+		<button type="submit" title="@("Search".Localize())" class="button">
+			<span><span>@("Go".Localize())</span></span></button>
+		<div id="search_autocomplete" class="search-autocomplete">
+		</div>
+		<script type="text/javascript">
+			$(document).ready(function ()
+			{
+				if ($("input#search"))
+				{
+					$("input#search").autocomplete({
+						minLength: 3,
+                      source: '@Url.Action("Find","Search", new {area = "VirtoCommerce"})',
+                    				select: function (event, ui)
+                    				{
+                    					document.location.href = ui.item.url;
+                    				}
+                    			});
+							}
+                    	});
+		</script>
+	</div>
+</form>
