@@ -1549,7 +1549,7 @@
     <Content Include="Images\svg-export.png" />
     <Content Include="Images\svg-preview.png" />
     <Content Include="Images\svg-view.png" />
-    <Content Include="LICENSE.txt" />
+    <Content Include="kooboo-license.txt" />
     <Content Include="routes.config">
       <SubType>Designer</SubType>
     </Content>
