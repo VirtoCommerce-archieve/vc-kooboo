@@ -94,9 +94,8 @@
     <Reference Include="Kooboo.CMS.Form">
       <HintPath>..\lib\Kooboo\Kooboo.CMS.Form.dll</HintPath>
     </Reference>
-    <Reference Include="Kooboo.CMS.Membership, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Kooboo.VirtoCommerce\lib\Kooboo\Kooboo.CMS.Membership.dll</HintPath>
+    <Reference Include="Kooboo.CMS.Membership">
+      <HintPath>..\lib\Kooboo\Kooboo.CMS.Membership.dll</HintPath>
     </Reference>
     <Reference Include="Kooboo.CMS.Search">
       <HintPath>..\lib\Kooboo\Kooboo.CMS.Search.dll</HintPath>
