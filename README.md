@@ -1,4 +1,4 @@
-vc-kooboo
+Virto Commerce CMS Accelerator - Kooboo 
 =========
 
-Virto Commerce Kooboo Integration
+This project provides integrated CMS solution using Kooboo CMS.
