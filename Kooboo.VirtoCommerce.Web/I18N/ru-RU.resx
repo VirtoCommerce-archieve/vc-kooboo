@@ -2193,4 +2193,94 @@ Microsoft ResX Schema
   <data name="Goto" xml:space="preserve">
     <value>Перейти</value>
   </data>
+  <data name="My Account" xml:space="preserve">
+    <value>My Account</value>
+  </data>
+  <data name="My Wishlist" xml:space="preserve">
+    <value>My Wishlist</value>
+  </data>
+  <data name="My Cart" xml:space="preserve">
+    <value>My Cart</value>
+  </data>
+  <data name="Checkout" xml:space="preserve">
+    <value>Checkout</value>
+  </data>
+  <data name="Log On" xml:space="preserve">
+    <value>Log On</value>
+  </data>
+  <data name="Go" xml:space="preserve">
+    <value>Go</value>
+  </data>
+  <data name="About Us" xml:space="preserve">
+    <value>About Us</value>
+  </data>
+  <data name="Customer Service" xml:space="preserve">
+    <value>Customer Service</value>
+  </data>
+  <data name="Version:" xml:space="preserve">
+    <value>Version:</value>
+  </data>
+  <data name="Report Issues" xml:space="preserve">
+    <value>Report Issues</value>
+  </data>
+  <data name="© 2013 VirtoCommerce Demo Store. All Rights Reserved." xml:space="preserve">
+    <value>© 2013 VirtoCommerce Demo Store. All Rights Reserved.</value>
+  </data>
+  <data name="Powered by" xml:space="preserve">
+    <value>Powered by</value>
+  </data>
+  <data name="Virto Commerce" xml:space="preserve">
+    <value>Virto Commerce</value>
+  </data>
+  <data name="Items {0} to {1} of {2} total" xml:space="preserve">
+    <value>Items {0} to {1} of {2} total</value>
+  </data>
+  <data name="Show" xml:space="preserve">
+    <value>Show</value>
+  </data>
+  <data name="per page" xml:space="preserve">
+    <value>per page</value>
+  </data>
+  <data name="Page:" xml:space="preserve">
+    <value>Page:</value>
+  </data>
+  <data name="Sort By" xml:space="preserve">
+    <value>Sort By</value>
+  </data>
+  <data name="Price:" xml:space="preserve">
+    <value>Price:</value>
+  </data>
+  <data name="Add to Cart" xml:space="preserve">
+    <value>Add to Cart</value>
+  </data>
+  <data name="Item added to wish list" xml:space="preserve">
+    <value>Item added to wish list</value>
+  </data>
+  <data name="Add to Wishlist" xml:space="preserve">
+    <value>Add to Wishlist</value>
+  </data>
+  <data name="Item added to compare list" xml:space="preserve">
+    <value>Item added to compare list</value>
+  </data>
+  <data name="Add to Compare" xml:space="preserve">
+    <value>Add to Compare</value>
+  </data>
+  <data name="Shop By" xml:space="preserve">
+    <value>Shop By</value>
+  </data>
+  <data name="Brand" xml:space="preserve">
+    <value>Brand</value>
+  </data>
+  <data name="Color" xml:space="preserve">
+    <value>Color</value>
+  </data>
+  <data name="Цена" xml:space="preserve">
+    <value>Цена</value>
+  </data>
+  <data name="You have no items in your shopping cart." xml:space="preserve">
+    <value>You have no items in your shopping cart.</value>
+  </data>
+  <data name="You have no items in your compare list." xml:space="preserve">
+    <value>You have no items in your compare list.</value>
+  </data>
 </root>

@@ -1,17 +1,25 @@
-﻿using System.Linq;
-using Kooboo.CMS.Common;
+﻿using Kooboo.CMS.Common;
+using Kooboo.CMS.Common.Persistence.Non_Relational;
 using Kooboo.CMS.Common.Runtime.Dependency;
+using Kooboo.CMS.Sites.Models;
+using System;
+using System.Configuration;
+using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using VirtoCommerce.Client;
+using VirtoCommerce.Foundation.Stores.Model;
+using VirtoCommerce.Web.Client.Helpers;
 using VirtoCommerce.Web.Client.Modules;
 using VirtoCommerce.Web.Models;
 using VirtoCommerce.Web.Models.Binders;
+using DependencyResolver = System.Web.Mvc.DependencyResolver;
 
 namespace Kooboo.VirtoCommerce.Extensions
 {
     using Kooboo.CMS.Sites.Membership;
 
-    [Dependency(typeof(IHttpApplicationEvents), Key ="VirtoHttpApplicationEvents")]
+    [Dependency(typeof(IHttpApplicationEvents), Key = "VirtoHttpApplicationEvents")]
     public class VirtoHttpApplicationEvents : HttpApplicationEvents
     {
         private static readonly IHttpModule[] _modules = new[] { new KoobooStoreHttpModule(), (IHttpModule)new MarketingHttpModule() };
@@ -21,15 +29,25 @@ namespace Kooboo.VirtoCommerce.Extensions
             ModelBinders.Binders[typeof(SearchParameters)] = new SearchParametersBinder();
         }
 
-		public override void Application_Start(object sender, System.EventArgs e)
-		{
-			base.Application_Start(sender, e);
+        public override void Application_Start(object sender, System.EventArgs e)
+        {
+            base.Application_Start(sender, e);
             ViewEngines.Engines.Insert(ViewEngines.Engines.Count, new SiteRazorViewEngine());
-		}
+        }
     }
 
     public class KoobooStoreHttpModule : StoreHttpModule
     {
+        protected override string StoreCookie
+        {
+            get { return "vcf.kooboo.store"; }
+        }
+
+        protected override string CurrencyCookie
+        {
+            get { return "vcf.kooboo.currency"; }
+        }
+
         protected override bool IsRequestAuthenticated(HttpContext context)
         {
             return context.Request.RequestContext.HttpContext.Membership().GetMember().Identity.IsAuthenticated;
@@ -50,6 +68,50 @@ namespace Kooboo.VirtoCommerce.Extensions
         {
             base.OnAuthenticateRequest(sender, e);
             base.OnPostAcquireRequestState(sender, e);
+        }
+
+        protected override Store GetStore(HttpContext context)
+        {
+            // try getting store from the cookie
+            var storeid = StoreHelper.GetCookieValue(StoreCookie, false);
+            var storeClient = DependencyResolver.Current.GetService<StoreClient>();
+            Store store = null;
+
+            // try getting default store from settings
+            if (String.IsNullOrEmpty(storeid))
+            {
+                if (Site.Current == null)
+                {
+                    //manually load site (TODO: hardcoded VirtoCommerce!!!)
+                    Site.Current = (SiteHelper.Parse("VirtoCommerce")).AsActual();
+                }
+
+                if (Site.Current != null)
+                {
+                    storeid = Site.Current.CustomFields["VCStoreId"];
+
+                    if (String.IsNullOrEmpty(storeid))
+                    {
+                        storeid = ConfigurationManager.AppSettings["DefaultStore"];
+                    }
+                }
+            }
+
+            if (!String.IsNullOrEmpty(storeid))
+            {
+                store = storeClient.GetStoreById(storeid);
+
+                if (store != null)
+                {
+                    //Closed store is not available
+                    if (store.StoreState == (int)StoreState.Closed)
+                    {
+                        store = null;
+                    }
+                }
+            }
+
+            return store;
         }
     }
 }
