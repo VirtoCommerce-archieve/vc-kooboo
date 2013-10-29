@@ -1,15 +1,11 @@
-﻿@using VirtoCommerce.Web.Client.Globalization
-@using VirtoCommerce.Web.Client.Extensions
-@using VirtoCommerce.Web.Client.Helpers
-@using VirtoCommerce.Web.Helpers
-@using VirtoCommerce.Web.Models
+﻿@using VirtoCommerce.Web.Client.Helpers
 @using VirtoCommerce.Foundation.Stores.Model
 <div class="main-container col1-layout">
     <div class="main">
         <div class="col-main">
             <div class="account-login">
                 <div class="page-title">
-                    <h1>@("Login or Create an Account".LocalizeHtml())</h1>
+                    <h1>@("Login or Create an Account".Localize())</h1>
                 </div>
                 <form class="ajaxForm" action="@Url.FrontUrl().SubmissionUrl("ValidateMember", new { returnUrl = ViewContext.RequestContext.GetRequestValue("returnUrl") })" method="post">
                     @Html.AntiForgeryToken()
@@ -18,22 +14,22 @@
                         <div class="col-1 new-users">
                             <div class="content">
                                 <h2>
-                                    @("New Customers".LocalizeHtml())</h2>
+                                    @("New Customers".Localize())</h2>
                                 <p>
-                                    @("By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.".LocalizeHtml())
+                                    @("By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.".Localize())
                                 </p>
                             </div>
                             <div class="buttons-set">
-                                <button onclick="window.location='@Url.FrontUrl().PageUrl("Member/Register")';" class="button" title="@("Create an Account".LocalizeHtml())" type="button">
-                                    <span><span>@("Create an Account".LocalizeHtml())</span></span></button>
+                                <button onclick="window.location='@Url.FrontUrl().PageUrl("Member/Register")';" class="button" title="@("Create an Account".Localize())" type="button">
+                                    <span><span>@("Create an Account".Localize())</span></span></button>
                             </div>
                         </div>
                         <div class="col-2 registered-users">
                             <div class="content">
                                 <h2>
-                                    @("Registered Customers".LocalizeHtml())</h2>
+                                    @("Registered Customers".Localize())</h2>
                                 <p>
-                                    @("If you have an account with us, please log in.".LocalizeHtml())
+                                    @("If you have an account with us, please log in.".Localize())
                                 </p>
                                 <ul class="form-list">
                                     <li>
@@ -59,12 +55,12 @@
                                     </li>
                                 </ul>
                                 <p class="required">
-                                    * @("Required Fields".LocalizeHtml())
+                                    * @("Required Fields".Localize())
                                 </p>
 
                                 <div class="buttons-set">
                                     <a class="f-left" href="@Url.FrontUrl().PageUrl("Member/ForgotPassword")">@("Forgot password?".Label())</a>
-                                    <button id="send2" name="send" type="submit" title="@("Login".LocalizeHtml())" class="button"><span><span>@("Login".Label())</span></span></button>
+                                    <button id="send2" name="send" type="submit" title="@("Login".Localize())" class="button"><span><span>@("Login".Label())</span></span></button>
                                 </div>
 
                             </div>
@@ -89,7 +85,7 @@
 
                                         <h2>@("Use another service to log in.".Label())</h2>                            
 
-                                        <form action="@(Page_Context.Current.ExternalLogin().ExternalLoginUrl(ViewContext.RequestContext.GetRequestValue("ReturnUrl")))" method="post">
+                                        <form action="@(Page_Context.Current.ExternalLogin().ExternalLoginUrl(Url.FrontUrl().PageUrl("Member/ExternalLoginConfirmation").ToHtmlString()))" method="post">
 
                                             @Html.AntiForgeryToken()
                                             <p>
@@ -98,7 +94,7 @@
                                                     if (p.Enabled)
                                                     {
 
-                                                    <button type="submit" name="connectName" style="border: 0; padding: 2px" value="@p.Name" title="@("Log in using your {0} account".LocalizeHtml(p.DisplayName))">
+                                                    <button type="submit" name="connectName" style="border: 0; padding: 2px" value="@p.Name" title="@("Log in using your {0} account".Localize(p.DisplayName))">
                                                         <img alt="@p.DisplayName" style="border: 0" src="@Href(String.Format("~/content/themes/default/images/social/{0}.png", p.Name))"/>
                                                     </button>                                                     
                                                     }

@@ -1,0 +1,47 @@
+﻿@model Kooboo.VirtoCommerce.Model.VirtoExternalLoginModel
+@{ var user = HttpContext.Current.Request.RequestContext.HttpContext.Membership().GetMembershipUser(); }
+
+@if (user != null && !string.IsNullOrEmpty(user.ProviderType) && (user.Profiles == null || !user.Profiles.ContainsKey("IsVirtoCommerce")))
+{
+    <div class="main-container col1-layout">
+        <div class="main">
+            <div class="col-main">
+                <div class="page-title">
+                    <h1>@(string.Format("Associate your {0} account.".Localize(), user.ProviderType))</h1>
+                </div>
+                <form class="ajaxForm" action="@Url.FrontUrl().SubmissionUrl("ExternalLoginConfirm")" method="post">
+                    @Html.AntiForgeryToken()
+
+                    <div class="fieldset">
+                        <h2 class="legend">Association Form</h2>
+                        <p>
+                            @(string.Format(@"You've successfully authenticated with <strong>{0}</strong>. Please click the Confirm button to finish registration.", user.ProviderType).Label())
+
+                        </p>
+                        <ul class="form-list">
+                            <li class="fields">
+                                <div class="field name-firstname">
+                                    <label for="Username">Username:</label>
+                                    <input type="text" name="Username" value="@user.UserName" class="input-text" readonly="readonly" />
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="buttons-set">
+                        <button type="submit" value="Register" class="button">
+                            <span>
+                                <span>@("Confirm Registration".Localize())</span>
+                            </span>
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    Response.Redirect(Url.FrontUrl().PageUrl("Home").ToHtmlString());
+}

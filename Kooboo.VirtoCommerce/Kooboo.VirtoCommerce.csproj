@@ -285,12 +285,14 @@
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="CommerceAreaRegistration.cs" />
+    <Compile Include="Extensions\ExternalRegistrationConfirmPlugin.cs" />
     <Compile Include="Extensions\KoobooAjaxExtensions.cs" />
     <Compile Include="Extensions\SiteViewEngine.cs" />
     <Compile Include="Extensions\VirtoRegisterMemberPlugin.cs" />
     <Compile Include="KoobooMvcApplication.cs" />
     <Compile Include="Extensions\VirtoHttpApplicationEvents.cs" />
     <Compile Include="KoobooBasePage.cs" />
+    <Compile Include="Model\VirtoExternalLoginModel.cs" />
     <Compile Include="Model\VirtoRegisterMemberModel.cs" />
     <Compile Include="ModuleAction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

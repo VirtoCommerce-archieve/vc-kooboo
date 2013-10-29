@@ -70,6 +70,17 @@ namespace Kooboo.VirtoCommerce.Extensions
             base.OnPostAcquireRequestState(sender, e);
         }
 
+        protected override void OnUnauthorized(HttpContext context)
+        {
+            var user = context.Request.RequestContext.HttpContext.Membership().GetMembershipUser();
+
+            //Logout only if user profile is marked as connected to virto commerce account
+            if (user != null && user.Profiles != null && user.Profiles.ContainsKey("IsVirtoCommerce"))
+            {
+                context.Request.RequestContext.HttpContext.Membership().SignOut();
+            }
+        }
+
         protected override Store GetStore(HttpContext context)
         {
             // try getting store from the cookie

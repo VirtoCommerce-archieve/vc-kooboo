@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using Kooboo.CMS.Membership.Services;
 using Kooboo.CMS.Sites.Extension;
 using Kooboo.CMS.Sites.Membership;
 using Kooboo.VirtoCommerce.Model;
+using Kooboo.Web.Css;
 using VirtoCommerce.Client;
 using VirtoCommerce.Foundation.Customers.Model;
 using VirtoCommerce.Foundation.Security.Model;
@@ -14,10 +16,12 @@ namespace Kooboo.VirtoCommerce.Extensions
     public class VirtoRegisterMemberPlugin : RegisterMemberPlugin
     {
         private readonly UserClient _userClient = DependencyResolver.Current.GetService<UserClient>();
+        private MembershipUserManager _manager;
 
         public VirtoRegisterMemberPlugin(MembershipUserManager manager)
             : base(manager)
         {
+            _manager = manager;
         }
 
         protected override bool RegisterCore(ControllerContext controllerContext, CMS.Sites.Models.SubmissionSetting submissionSetting, out string redirectUrl)
@@ -28,7 +32,7 @@ namespace Kooboo.VirtoCommerce.Extensions
 
                 var valid = ModelBindHelper.BindModel(registerMemberModel, "", controllerContext, submissionSetting);
 
-                if (valid && RegisterVirtoUser(registerMemberModel))
+                if (valid && RegisterVirtoUser(_manager, _userClient, registerMemberModel))
                 {
                     return true;
                 }
@@ -36,13 +40,13 @@ namespace Kooboo.VirtoCommerce.Extensions
             return false;
         }
 
-        private bool RegisterVirtoUser(VirtoRegisterMemberModel model)
+        public static bool RegisterVirtoUser(MembershipUserManager manager, UserClient userClient, VirtoRegisterMemberModel model)
         {
             try
             {
                 var id = Guid.NewGuid().ToString();
 
-                _userClient.CreateAccount(new Account
+                userClient.CreateAccount(new Account
                     {
                         AccountState = model.IsApproved ? 
                         AccountState.Approved.GetHashCode() : 
@@ -56,11 +60,27 @@ namespace Kooboo.VirtoCommerce.Extensions
                 var contact = new Contact
                 {
                     MemberId = id,
-                    FullName = String.Format("{0} {1}", model.FirstName, model.LastName)
+                    FullName = String.Format("{0} {1}", model.FirstName, model.LastName).Trim()
                 };
 
                 contact.Emails.Add(new Email { Address = model.Email, MemberId = id, Type = EmailType.Primary.ToString() });
-                _userClient.CreateContact(contact);
+                userClient.CreateContact(contact);
+
+                model.Profiles = model.Profiles ?? new Dictionary<string, string>();
+
+                if (!model.Profiles.ContainsKey("IsVirtoCommerce"))
+                {
+                    model.Profiles.Add("IsVirtoCommerce", "True");
+                }
+
+                manager.EditMemberProfile(MemberPluginHelper.GetMembership(), 
+                    model.UserName, 
+                    model.Email, 
+                    model.Culture, 
+                    model.TimeZoneId, 
+                    model.PasswordQuestion,
+                    model.PasswordAnswer, 
+                    model.Profiles);         
             }
             catch
             {

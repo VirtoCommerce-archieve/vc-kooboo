@@ -2663,4 +2663,43 @@ Are you sure you want to use this size?</value>
   <data name="'ConfirmPassword' and 'Password' do not match." xml:space="preserve">
     <value>'ConfirmPassword' and 'Password' do not match.</value>
   </data>
+  <data name="Associate your {0} account." xml:space="preserve">
+    <value>Associate your {0} account.</value>
+  </data>
+  <data name="Confirm Registration" xml:space="preserve">
+    <value>Confirm Registration</value>
+  </data>
+  <data name="Login or Create an Account" xml:space="preserve">
+    <value>Login or Create an Account</value>
+  </data>
+  <data name="Login was unsuccessful. Please correct the errors and try again." xml:space="preserve">
+    <value>Login was unsuccessful. Please correct the errors and try again.</value>
+  </data>
+  <data name="New Customers" xml:space="preserve">
+    <value>New Customers</value>
+  </data>
+  <data name="By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more." xml:space="preserve">
+    <value>By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.</value>
+  </data>
+  <data name="Create an Account" xml:space="preserve">
+    <value>Create an Account</value>
+  </data>
+  <data name="Registered Customers" xml:space="preserve">
+    <value>Registered Customers</value>
+  </data>
+  <data name="If you have an account with us, please log in." xml:space="preserve">
+    <value>If you have an account with us, please log in.</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="User already exist" xml:space="preserve">
+    <value>User already exist</value>
+  </data>
+  <data name="Failed to login" xml:space="preserve">
+    <value>Failed to login</value>
+  </data>
+  <data name="Username already exist" xml:space="preserve">
+    <value>Username already exist</value>
+  </data>
 </root>

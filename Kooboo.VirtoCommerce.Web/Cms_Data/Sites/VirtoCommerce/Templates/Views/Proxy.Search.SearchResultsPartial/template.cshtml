@@ -1,5 +1,4 @@
-﻿@using VirtoCommerce.Web.Client.Globalization
-@model VirtoCommerce.Web.Models.CatalogItemSearchModel
+﻿@model VirtoCommerce.Web.Models.CatalogItemSearchModel
 
 <script type="text/javascript">
     VirtoCommerce.BaseUrl = '@Url.ModuleUrl().Action("Add", "Cart").Replace("/Cart/Add","")';
@@ -12,12 +11,12 @@
                 </ul>
             <div class="page-title category-title">
                 <a href="#"
-                    class="link-rss">@("Subscribe to RSS Feed".LocalizeHtml())</a>
+                    class="link-rss">@("Subscribe to RSS Feed".Localize())</a>
                 <h1>@ViewBag.Title</h1>
             </div>
             @if (Model.Pager.TotalCount == 0)
             {
-            <p class="note-msg">@("There are no results available.".LocalizeHtml())</p>
+            <p class="note-msg">@("There are no results available.".Localize())</p>
             }
             else
             {
@@ -68,7 +67,7 @@
             <div class="block block-currency">
                 <div class="block-title">
                     <strong>
-                        <span>@("Select Your Currency.".LocalizeHtml())</span>
+                        <span>@("Select Your Currency.".Localize())</span>
                     </strong>
                 </div>
                 <div class="block-content">
@@ -80,7 +79,7 @@
             </div>
             <div class="block block-cart">
                 <div class="block-title">
-                    <strong><span>@("My Cart".LocalizeHtml())</span></strong>
+                    <strong><span>@("My Cart".Localize())</span></strong>
                 </div>
                 <div class="block-content">
                     @{Html.ModuleHtml().RenderAction("MiniView", "Cart");}
@@ -88,7 +87,7 @@
             </div>
             <div class="block block-list block-compare">
                 <div class="block-title">
-                    <strong><span>@("Compare Products".LocalizeHtml())</span></strong>
+                    <strong><span>@("Compare Products".Localize())</span></strong>
                 </div>
                 <div class="block-content">
 					@{Html.ModuleHtml().RenderAction("MiniCompareList", "Account");}

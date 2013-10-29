@@ -1544,6 +1544,10 @@
     <Content Include="Cms_Data\Sites\VirtoCommerce\Templates\Views\Proxy.Store.WishListLink\template.cshtml" />
     <Content Include="Cms_Data\Sites\VirtoCommerce\Templates\Views\Proxy.Store.StorePicker\setting.config" />
     <Content Include="Cms_Data\Sites\VirtoCommerce\Templates\Views\Proxy.Store.StorePicker\template.cshtml" />
+    <Content Include="Cms_Data\Sites\VirtoCommerce\Pages\Member\ExternalLoginConfirmation\setting.config" />
+    <Content Include="Cms_Data\Sites\VirtoCommerce\Templates\Views\Account.ExternalLoginConfirmation\setting.config" />
+    <Content Include="Cms_Data\Sites\VirtoCommerce\Templates\Views\Account.ExternalLoginConfirmation\template.cshtml" />
+    <Content Include="Cms_Data\Sites\VirtoCommerce\SubmissionSettings\ExternalLoginConfirm.config" />
     <None Include="Properties\PublishProfiles\Publish.pubxml" />
     <Content Include="Images\svg-edit.png" />
     <Content Include="Images\svg-export.png" />
