@@ -106,6 +106,16 @@ namespace Kooboo.VirtoCommerce.Extensions
                     registerMemberModel.FirstName = model.Username;
                 }
 
+                if (!membershipUser.Profiles.ContainsKey("FirstName") && !string.IsNullOrEmpty(registerMemberModel.FirstName))
+                {
+                    membershipUser.Profiles.Add("FirstName",registerMemberModel.FirstName);
+                }
+
+                if (!membershipUser.Profiles.ContainsKey("LastName") && !string.IsNullOrEmpty(registerMemberModel.LastName))
+                {
+                    membershipUser.Profiles.Add("LastName", registerMemberModel.FirstName);
+                }
+
                 if (VirtoRegisterMemberPlugin.RegisterVirtoUser(_manager, _userClient, registerMemberModel))
                 {
                     return true;

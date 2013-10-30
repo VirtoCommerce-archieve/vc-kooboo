@@ -1,4 +1,5 @@
-﻿@model VirtoCommerce.Foundation.Orders.Model.Order
+﻿ @using VirtoCommerce.Web.Client.Helpers 
+@model VirtoCommerce.Foundation.Orders.Model.Order
  <tr class="first last odd">
                     <td>
                         @Model.TrackingNumber
@@ -20,7 +21,6 @@
                             @Html.ActionLink("View", "ViewOrder", new { orderId = Model.OrderGroupId })<span class="separator">|</span>
                             @Html.ActionLink("Reorder", "Reorder", new { orderId = Model.OrderGroupId }) <span class="separator">|</span>
                             @Html.ActionLink("Return", "OrderReturn", new { orderId = Model.OrderGroupId })
-
                         </span>
                     </td>
                 </tr>          

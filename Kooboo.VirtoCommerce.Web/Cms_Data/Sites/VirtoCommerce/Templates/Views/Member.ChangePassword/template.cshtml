@@ -1,43 +1,45 @@
 ﻿<div class="block member-form common-form">
-    <form class="ajaxForm" action="@Url.FrontUrl().SubmissionUrl("ChangeMemberPassword")" method="post">
+    <form class="ajaxForm" action="@Url.FrontUrl().SubmissionUrl("ChangeMemberPassword", new { ReturnUrl = Url.FrontUrl().PageUrl("Member") })" method="post">
         @Html.ValidationSummary(true)
         @Html.AntiForgeryToken()
-        <table class="member-form-main single">
-            <tr class="field">
-                <th>
-                    <label for="OldPassword">@("Old password".Label()):</label>
-                </th>
-                <td>
-                    <input id="OldPassword" name="OldPassword" type="password" @((new[] { Validator.Required("Required".RawLabel().ToString()).ClientValidationRule }).GenerateHtmlAttributes()) >
-                    @Html.ValidationMessageForInput("OldPassword")
-                </td>
-            </tr>
-
-            <tr class="field">
-                <th>
-                    <label for="NewPassword">@("New password".Label()):</label>
-                </th>
-                <td>
-                    <input id="NewPassword" name="NewPassword" type="password" @((new[] { Validator.Required("Required".RawLabel().ToString()).ClientValidationRule }).GenerateHtmlAttributes())>
-                    @Html.ValidationMessageForInput("NewPassword")
-                </td>
-            </tr>
-            <tr class="field">
-                <th>
-                    <label for="ConfirmPassword">@("Confirm password".Label()):</label>
-                </th>
-                <td>
-                    <input id="ConfirmPassword" name="ConfirmPassword"  type="password" @((new[] { Validator.Required("Required".RawLabel().ToString()).ClientValidationRule }).GenerateHtmlAttributes())
-                         data-val-equalto="@("'Confirm password' and 'New password' do not match.".RawLabel())" data-val-equalto-other="*.NewPassword" >
-                    @Html.ValidationMessageForInput("ConfirmPassword")
-                </td>
-            </tr>
-            <tr>
-                <th></th>
-                <td>
-                    <button type="submit">@("Submit".Label())</button>
-                </td>
-            </tr>
-        </table>
+        <div class="fieldset">
+            <h2 class="legend">@("Change Password".Label())</h2>
+            <ul class="form-list">
+                <li>
+                    <div class="field">
+                        <label for="OldPassword">@("Old password".Label()):</label>
+                        <div class="input-box">
+                            <input id="OldPassword" class="input-text" name="OldPassword" type="password" @((new[] { Validator.Required("Required".RawLabel().ToString()).ClientValidationRule }).GenerateHtmlAttributes()) >
+                            @Html.ValidationMessageForInput("OldPassword")
+                        </div>
+                    </div>
+                </li>
+                <li class="fields">
+                    <div class="field">
+                        <label for="NewPassword">@("New password".Label()):</label>
+                        <div class="input-box">
+                            <input id="NewPassword" class="input-text" name="NewPassword" type="password" @((new[] { Validator.Required("Required".RawLabel().ToString()).ClientValidationRule }).GenerateHtmlAttributes())>
+                            @Html.ValidationMessageForInput("NewPassword")
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label for="ConfirmPassword">@("Confirm password".Label()):</label>
+                        <div class="input-box">
+                            <input id="ConfirmPassword" class="input-text" name="ConfirmPassword"  type="password" @((new[] { Validator.Required("Required".RawLabel().ToString()).ClientValidationRule }).GenerateHtmlAttributes())
+                                    data-val-equalto="@("'Confirm password' and 'New password' do not match.".RawLabel())" data-val-equalto-other="*.NewPassword" >
+                            @Html.ValidationMessageForInput("ConfirmPassword")
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="buttons-set">
+            <p class="back-link">
+                <a href="@Url.FrontUrl().PageUrl("Member")"><small>« </small>
+                    @("Back".Localize())</a>
+            </p>
+            <button class="button" title="Save" type="submit">
+                <span><span>@("Save".Localize())</span></span></button>
+        </div>
     </form>
 </div>

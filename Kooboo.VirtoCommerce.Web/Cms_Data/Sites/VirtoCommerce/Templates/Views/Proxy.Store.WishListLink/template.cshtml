@@ -3,10 +3,10 @@
 
 @if (Model.LineItems.Any())
 {
-    <a href="@Url.Action("WishList", "Account")" title="My Wishlist">@("My Wishlist".Localize()) (@Model.LineItems.Count().ToString(CultureInfo.InvariantCulture) @String.Format("{0}", Model.LineItems.Count() > 1 ? "items" : "item"))</a>
+    <a href="@Url.FrontUrl().PageUrl("Member/Whishlist")" title="My Wishlist">@("My Wishlist".Localize()) (@Model.LineItems.Count().ToString(CultureInfo.InvariantCulture) @String.Format("{0}", Model.LineItems.Count() > 1 ? "items" : "item"))</a>
 }
 else
 {
-    <a href="@Url.Action("WishList", "Account")" title="My Wishlist">@("My Wishlist".Localize())</a>
+    <a href="@Url.FrontUrl().PageUrl("Member/Whishlist")" title="My Wishlist">@("My Wishlist".Localize())</a>
 }
 

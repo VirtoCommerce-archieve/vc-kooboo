@@ -3,7 +3,7 @@
     <div class="box-head">
         <h2>
             @("Recent Orders".Label())</h2>
-        <a href="@Url.Action("Orders")">@("View All".Label())</a>
+        <a href="@Url.FrontUrl().PageUrl("Member/Orders")">@("View All".Localize())</a>
     </div>
-    @Html.DisplayForModel("Orders")
+    @Html.FrontHtml().RenderView("Account.Display.Orders",Model)
 </div>

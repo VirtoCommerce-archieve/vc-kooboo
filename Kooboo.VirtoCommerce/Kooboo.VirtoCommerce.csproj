@@ -285,6 +285,7 @@
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="CommerceAreaRegistration.cs" />
+    <Compile Include="Extensions\AccountPlugin.cs" />
     <Compile Include="Extensions\ExternalRegistrationConfirmPlugin.cs" />
     <Compile Include="Extensions\KoobooAjaxExtensions.cs" />
     <Compile Include="Extensions\SiteViewEngine.cs" />

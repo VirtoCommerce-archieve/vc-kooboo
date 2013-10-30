@@ -1,0 +1,27 @@
+﻿@model VirtoCommerce.Foundation.Orders.Model.Order[]
+    <table class="data-table" id="my-orders-table">
+        <colgroup>
+            <col width="1">
+            <col width="1">
+            <col />
+            <col width="1">
+            <col width="1">
+            <col width="1">
+        </colgroup>
+        <thead>
+            <tr class="first last">
+                <th>@("Order #".Localize())</th>
+                <th>@("Date".Localize())</th>
+                <th>@("Ship To".Localize())</th>
+                <th><span class="nobr">@("Order Total".Localize())</span></th>
+                <th><span class="nobr">@("Order Status".Localize())</span></th>
+                <th>&nbsp;</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (var i = 0; i < Model.Count(); i++)
+            {
+                @Html.FrontHtml().RenderView("Account.Display.OrderLine", Model[i])
+            }
+        </tbody>
+    </table>

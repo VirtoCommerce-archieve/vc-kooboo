@@ -1,1 +1,1 @@
-﻿ @{Html.RenderAction("Index", "Account", new { area = "VirtoCommerce" });}
+﻿@Html.FrontHtml().RenderView("Proxy.Account.Index", (object)ViewBag.CustomerModel)

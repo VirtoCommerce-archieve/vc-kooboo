@@ -25,9 +25,12 @@
             or edit information.".Label())</p>
     </div>
     <!-- recent orders -->
-    @{Html.RenderAction("RecentOrders");}
+    @if (ViewBag.RecentOrders != null)
+    {
+        @Html.FrontHtml().RenderView("Proxy.Account.RecentOrders", (object) ViewBag.RecentOrders)
+    }
     <!-- account info -->
-	@{Html.RenderAction("AccountInfo");}
+	 @Html.FrontHtml().RenderView("Proxy.Account.AccountInfo",(object)ViewBag.AccountInfo)
 	
 
 </div>

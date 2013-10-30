@@ -1,15 +1,38 @@
-﻿    <div class="block block-account">
+﻿@{
+    var pages = new[] { "Member", 
+        "Member/Profile", 
+        "Member/AddressBook", 
+        "Member/Orders", 
+        "Member/Whishlist", 
+        "Member/Returns" };
+}
+
+<div class="block block-account">
         <div class="block-title">
             <strong><span>@("My Account".Label())</span></strong>
         </div>
         <div class="block-content">
             <ul>
-              <li class="current"><b>Account Dashboard</b></li>
-              <li class="">@Html.FrontHtml().PageLink("Account Information", "Member/Profile")</li>
-              <li class="">@Html.FrontHtml().PageLink("Address Book", "Member/Edit")</li>
-              <li class="">@Html.FrontHtml().PageLink("My Orders", "Member/Profile")</li>
-              <li class="">@Html.FrontHtml().PageLink("My Wishlist", "Member/Profile")</li>
-              <li class="last">@Html.FrontHtml().PageLink("My Returns", "Member/Profile")</li>
-			</ul>
+                @foreach (var pageName in pages)
+                {
+                    var item = ServiceFactory.PageManager.Get(Site.Current, pageName);
+                    if (item == null)
+                    {
+                        continue;
+                    }
+
+                    var isCurrent = Page_Context.Current.PageRequestContext.Page.FullName.Equals(item.FullName);
+                    <li class ='@(isCurrent ? "current" : "")'>
+                        @if (!isCurrent)
+                        {
+                            @Html.FrontHtml().PageLink(item.LinkText, item.FullName)
+                        }
+                        else
+                        {
+                            <b>@item.LinkText</b>
+                        }
+                    </li>
+                }
+            </ul>
         </div>
     </div>

@@ -1,0 +1,85 @@
+﻿@model VirtoCommerce.Web.Models.OrderAddressModel
+<div class="box-account box-info">
+    <div class="box-head">
+        <h2>
+            @("Account Information".Localize())</h2>
+    </div>
+    <div class="col2-set">
+        <div class="col-1">
+            <div class="box">
+                <div class="box-title">
+                    <h3>
+                        @("Contact Information".Localize())</h3>
+                    <a href="@Url.FrontUrl().PageUrl("Member/Profile")">@("Edit".Localize())</a>
+                </div>
+                <div class="box-content">
+                    <p>
+                        @Model.CurrentUser.FullName<br>
+                        @Model.CurrentUser.Email<br>
+                        <a href="@Url.FrontUrl().PageUrl("Member/ChangePassword")">
+                            @("Change Password".Localize())
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-2">
+            <div class="box">
+                <div class="box-title">
+                    <h3>@("Newsletters".Localize())</h3>
+                    <a href="#">@("Edit".Localize())</a>
+                </div>
+                <div class="box-content">
+                    <p>
+                        @("You are currently not subscribed to any newsletter.".Localize())
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col2-set">
+        <div class="box">
+            <div class="box-title">
+                <h3>@("Address Book".Localize())</h3>
+                <a href="@Url.FrontUrl().PageUrl("Member/AddressBook")">@("Manage Addresses".Localize())</a>
+            </div>
+            <div class="box-content">
+                <div class="col-1">
+                    <h4>@("Default Billing Address".Localize())</h4>
+                    @if (Model.BillingAddress != null)
+                    {
+                        Html.RenderAction("AddressView", "Account", new { address = Model.BillingAddress });
+                        <p>
+                            <a href="@Url.Action("AddressEdit", "Account", new { userId = Model.CurrentUser.MemberId, addressId = Model.BillingAddress.AddressId })">
+                                @("Edit Address".Localize())
+                            </a>
+                        </p>
+                    }
+                    else
+                    {
+                        <p>@("You have no Default Billing Address".Localize())</p>
+                    }
+
+                </div>
+                <div class="col-2">
+                    <h4>@("Default Shipping Address".Localize())
+                    </h4>
+                    @if (Model.ShippingAddress != null)
+                    {
+                        Html.RenderAction("AddressView", "Account", new { address = Model.ShippingAddress });
+                        <p>
+                            <a href="@Url.Action("AddressEdit", "Account", new { userId = Model.CurrentUser.MemberId, addressId = Model.ShippingAddress.AddressId })">
+                                @("Edit Address".Localize())
+                            </a>
+                        </p>
+                    }
+                    else
+                    {
+                        <p>@("You have no Default Shipping Address".Localize())</p>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
