@@ -5,18 +5,17 @@ using Kooboo.CMS.Membership.Services;
 using Kooboo.CMS.Sites.Extension;
 using Kooboo.CMS.Sites.Membership;
 using Kooboo.VirtoCommerce.Model;
-using Kooboo.Web.Css;
 using VirtoCommerce.Client;
 using VirtoCommerce.Foundation.Customers.Model;
 using VirtoCommerce.Foundation.Security.Model;
+using VirtoCommerce.Web.Client.Helpers;
 using VirtoCommerce.Web.Virto.Helpers;
 
-namespace Kooboo.VirtoCommerce.Extensions
+namespace Kooboo.VirtoCommerce.Extensions.Plugins
 {
     public class VirtoRegisterMemberPlugin : RegisterMemberPlugin
     {
-        private readonly UserClient _userClient = DependencyResolver.Current.GetService<UserClient>();
-        private MembershipUserManager _manager;
+        private readonly MembershipUserManager _manager;
 
         public VirtoRegisterMemberPlugin(MembershipUserManager manager)
             : base(manager)
@@ -32,7 +31,7 @@ namespace Kooboo.VirtoCommerce.Extensions
 
                 var valid = ModelBindHelper.BindModel(registerMemberModel, "", controllerContext, submissionSetting);
 
-                if (valid && RegisterVirtoUser(_manager, _userClient, registerMemberModel))
+                if (valid && RegisterVirtoUser(_manager, StoreHelper.UserClient, registerMemberModel))
                 {
                     return true;
                 }
@@ -65,13 +64,6 @@ namespace Kooboo.VirtoCommerce.Extensions
 
                 contact.Emails.Add(new Email { Address = model.Email, MemberId = id, Type = EmailType.Primary.ToString() });
                 userClient.CreateContact(contact);
-
-                model.Profiles = model.Profiles ?? new Dictionary<string, string>();
-
-                if (!model.Profiles.ContainsKey("IsVirtoCommerce"))
-                {
-                    model.Profiles.Add("IsVirtoCommerce", "True");
-                }
 
                 manager.EditMemberProfile(MemberPluginHelper.GetMembership(), 
                     model.UserName, 

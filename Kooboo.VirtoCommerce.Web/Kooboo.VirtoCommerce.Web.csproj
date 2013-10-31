@@ -1391,8 +1391,8 @@
     <Content Include="Cms_Data\Sites\VirtoCommerce\Templates\Views\Member.ChangePassword\template.cshtml" />
     <Content Include="Cms_Data\Sites\VirtoCommerce\Templates\Views\Member.ForgotPassword\setting.config" />
     <Content Include="Cms_Data\Sites\VirtoCommerce\Templates\Views\Member.ForgotPassword\template.cshtml" />
-    <Content Include="Cms_Data\Sites\VirtoCommerce\Templates\Views\Member.Index\setting.config" />
-    <Content Include="Cms_Data\Sites\VirtoCommerce\Templates\Views\Member.Index\template.cshtml" />
+    <Content Include="Cms_Data\Sites\VirtoCommerce\Templates\Views\Member.Profile\setting.config" />
+    <Content Include="Cms_Data\Sites\VirtoCommerce\Templates\Views\Member.Profile\template.cshtml" />
     <Content Include="Cms_Data\Sites\VirtoCommerce\Templates\Views\Member.Login\setting.config" />
     <Content Include="Cms_Data\Sites\VirtoCommerce\Templates\Views\Member.Login\template.cshtml" />
     <Content Include="Cms_Data\Sites\VirtoCommerce\Templates\Views\Member.Nav\setting.config" />
@@ -1506,7 +1506,7 @@
     <Content Include="Cms_Data\Sites\VirtoCommerce\Pages\Member\ExternalLoginConfirmation\setting.config" />
     <Content Include="Cms_Data\Sites\VirtoCommerce\Templates\Views\Account.ExternalLoginConfirmation\setting.config" />
     <Content Include="Cms_Data\Sites\VirtoCommerce\Templates\Views\Account.ExternalLoginConfirmation\template.cshtml" />
-    <Content Include="Cms_Data\Sites\VirtoCommerce\SubmissionSettings\ExternalLoginConfirm.config" />
+    <Content Include="Cms_Data\Sites\VirtoCommerce\SubmissionSettings\ExternalLoginConfirmation.config" />
     <Content Include="Cms_Data\Sites\VirtoCommerce\Templates\Views\Proxy.Account.AccountInfo\setting.config" />
     <Content Include="Cms_Data\Sites\VirtoCommerce\Templates\Views\Proxy.Account.AccountInfo\template.cshtml" />
     <Content Include="Cms_Data\Sites\VirtoCommerce\Templates\Views\Account.Display.OrderLine\setting.config" />

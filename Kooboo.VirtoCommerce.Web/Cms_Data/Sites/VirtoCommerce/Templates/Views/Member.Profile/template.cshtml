@@ -1,0 +1,83 @@
+﻿@{
+    var membershipUser = ViewContext.HttpContext.Membership().GetMembershipUser();
+    var cultures = System.Globalization.CultureInfo.GetCultures(System.Globalization.CultureTypes.SpecificCultures).OrderBy(c => c.DisplayName);
+    var timeZoneHelper = Kooboo.CMS.Common.Runtime.EngineContext.Current.Resolve<Kooboo.CMS.Common.ITimeZoneHelper>();
+    var timeZones = timeZoneHelper.GetTimeZones();
+}
+<div class="block member-form common-form">
+    <form class="ajaxForm" action="@Url.FrontUrl().SubmissionUrl("EditMemberProfile")" method="post">
+        @Html.ValidationSummary(true)
+        @Html.AntiForgeryToken()
+        <div class="fieldset">
+            <h2 class="legend">@("Personal Information".Label()):</h2>
+            <ul class="form-list">
+                <li class="fields">
+                    <div class="field">
+                        <label for="FirstName">@("First name".Label()):</label>
+                        <div class="input-box">
+                            <input id="FirstName" name="FirstName" class="input-text"  type="text" value="@membershipUser.GetProfile("FirstName")">
+                            @Html.ValidationMessageForInput("FirstName")
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label for="LastName">@("Last name".Label()):</label>
+                        <div class="input-box">
+                            <input id="LastName" name="LastName" class="input-text"  type="text" value="@membershipUser.GetProfile("LastName")">
+                            @Html.ValidationMessageForInput("LastName")
+                        </div>
+                    </div>
+                </li>
+                <li class="fields">
+                    <div class="field">
+                        <label for="Email">@("Email".Label()):</label>
+                        <div class="input-box">
+                            <input id="Email" name="Email" class="input-text" type="text" value="@membershipUser.Email" @(new[] { Validator.Required("Required").ClientValidationRule, Validator.Regex(RegexPatterns.EmailAddress, "Invalid email").ClientValidationRule }.GenerateHtmlAttributes())>
+                            @Html.ValidationMessageForInput("Email")
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label for="Age">@("Age".Label()):</label>
+                        <div class="input-box">
+                            <input id="Age" name="Age" class="input-text"  type="text" value="@membershipUser.GetProfile("Age")">
+                            @Html.ValidationMessageForInput("Age")
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <label for="Culture">@("Culture".Label()):</label>
+                    <div class="input-box">
+                        <select id="Culture" name="Culture" type="text" value="@membershipUser.Culture" style="height: 21px;">
+                            @foreach (var c in cultures)
+                            {
+
+                                <option value="@c.Name" @(membershipUser.Culture == c.Name ? "selected" : "")>@c.NativeName</option>                            
+                            }
+                        </select>
+                        @Html.ValidationMessageForInput("Culture")
+                    </div>
+                </li>
+                <li>
+                    <label for="TimeZone">@("Time zone".Label()):</label>
+                    <div class="input-box">
+                        <select id="TimeZone" name="TimeZoneId" type="text" value="@membershipUser.TimeZoneId">
+                            @foreach (var t in timeZones)
+                            {
+
+                                <option value="@t.Id" @(membershipUser.TimeZoneId == t.Id ? "selected" : "")>@t.DisplayName</option>                            
+                            }
+                        </select>
+                        @Html.ValidationMessageForInput("TimeZone")
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="buttons-set">
+            <p class="back-link"><a class="back-link" href="@Url.FrontUrl().PageUrl("Member")"><small>« </small>Back</a></p>
+            <button id="send2" name="send" title="Submit" class="button" type="submit">
+                <span>
+                    <span>@("Update".Localize())</span>
+                </span>
+            </button>
+        </div>
+    </form>
+</div>

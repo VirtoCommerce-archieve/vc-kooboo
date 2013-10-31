@@ -1,30 +1,23 @@
-﻿using System.Web;
-using Kooboo.CMS.Common;
-using Kooboo.CMS.Common.DataViolation;
-using Kooboo.CMS.Membership.Models;
+﻿using Kooboo.CMS.Common;
 using Kooboo.CMS.Membership.Services;
 using Kooboo.CMS.Sites.Extension;
 using Kooboo.CMS.Sites.Membership;
 using Kooboo.CMS.Sites.Models;
 using Kooboo.CMS.Sites.View;
-using Kooboo.Globalization;
 using Kooboo.VirtoCommerce.Model;
-using Kooboo.Web.Url;
-using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 using Omu.ValueInjecter;
-using VirtoCommerce.Client;
-using DependencyResolver = System.Web.Mvc.DependencyResolver;
+using VirtoCommerce.Foundation.Customers;
+using VirtoCommerce.Web.Client.Helpers;
 
-namespace Kooboo.VirtoCommerce.Extensions
+namespace Kooboo.VirtoCommerce.Extensions.Plugins
 {
-    public class ExternalRegistrationConfirmPlugin : ISubmissionPlugin
+    public class ExternalRegistrationConfirmationPlugin : ISubmissionPlugin, IHttpMethodPagePlugin
     {
         private readonly MembershipUserManager _manager;
-        private readonly UserClient _userClient = DependencyResolver.Current.GetService<UserClient>();
 
-        public ExternalRegistrationConfirmPlugin(MembershipUserManager manager)
+        public ExternalRegistrationConfirmationPlugin(MembershipUserManager manager)
         {
             _manager = manager;
         }
@@ -74,23 +67,14 @@ namespace Kooboo.VirtoCommerce.Extensions
             {
                 redirectUrl = MemberPluginHelper.ResolveSiteUrl(controllerContext, model.RedirectUrl);
             }
-            var user = _userClient.GetAccountByUserName(model.Username.ToLower());
+            var user = StoreHelper.UserClient.GetAccountByUserName(model.Username.ToLower());
             var membershipUser = controllerContext.HttpContext.Membership().GetMembershipUser();
 
             //Such account is already created in virto
             if (membershipUser != null)
             {
-
-                membershipUser.Profiles = membershipUser.Profiles ?? new Dictionary<string, string>();
-
                 if (user != null)
                 {
-
-                    if (!membershipUser.Profiles.ContainsKey("IsVirtoCommerce"))
-                    {
-                        membershipUser.Profiles.Add("IsVirtoCommerce", "True");
-                        _manager.Update(membershipUser, membershipUser);
-                    }
                     return true;
                 }
 
@@ -106,6 +90,8 @@ namespace Kooboo.VirtoCommerce.Extensions
                     registerMemberModel.FirstName = model.Username;
                 }
 
+                membershipUser.Profiles = membershipUser.Profiles ?? new Dictionary<string, string>();
+
                 if (!membershipUser.Profiles.ContainsKey("FirstName") && !string.IsNullOrEmpty(registerMemberModel.FirstName))
                 {
                     membershipUser.Profiles.Add("FirstName",registerMemberModel.FirstName);
@@ -116,13 +102,54 @@ namespace Kooboo.VirtoCommerce.Extensions
                     membershipUser.Profiles.Add("LastName", registerMemberModel.FirstName);
                 }
 
-                if (VirtoRegisterMemberPlugin.RegisterVirtoUser(_manager, _userClient, registerMemberModel))
+                if (VirtoRegisterMemberPlugin.RegisterVirtoUser(_manager, StoreHelper.UserClient, registerMemberModel))
                 {
                     return true;
                 }
             }
 
             return false;
+        }
+
+        public ActionResult HttpGet(Page_Context context, PagePositionContext positionContext)
+        {
+            var membershipUser = context.ControllerContext.HttpContext.Membership().GetMembershipUser();
+            if (membershipUser != null)
+            {
+                var account = StoreHelper.UserClient.GetAccountByUserName(membershipUser.UserName);
+
+                //Account exist, no need to do anything
+                if (account != null)
+                {
+                    var model = new VirtoExternalLoginModel();
+                    var redirectUrl = "~/";
+
+                    if (ModelBindHelper.BindModel(model, "", context.ControllerContext, null))
+                    {
+                        if (!string.IsNullOrEmpty(model.RedirectUrl))
+                        {
+                            redirectUrl = model.RedirectUrl;
+                        }
+                    }
+
+                    return new RedirectResult(MemberPluginHelper.ResolveSiteUrl(context.ControllerContext, redirectUrl));
+
+                }
+            }
+
+            return null;
+        }
+
+        public ActionResult HttpPost(Page_Context context, PagePositionContext positionContext)
+        {
+            System.Web.Helpers.AntiForgery.Validate();
+            string redirectUrl;
+            context.ControllerContext.Controller.ViewBag.MembershipSuccess = RegisterCore(context.ControllerContext, null, out redirectUrl);
+            if (!string.IsNullOrEmpty(redirectUrl))
+            {
+                return new RedirectResult(redirectUrl);
+            }
+            return null;
         }
     }
 }

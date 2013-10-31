@@ -17,19 +17,19 @@ using DependencyResolver = System.Web.Mvc.DependencyResolver;
 
 namespace Kooboo.VirtoCommerce.Extensions
 {
-    using Kooboo.CMS.Sites.Membership;
+    using CMS.Sites.Membership;
 
     [Dependency(typeof(IHttpApplicationEvents), Key = "VirtoHttpApplicationEvents")]
     public class VirtoHttpApplicationEvents : HttpApplicationEvents
     {
-        private static readonly IHttpModule[] _modules = new[] { new KoobooStoreHttpModule(), (IHttpModule)new MarketingHttpModule() };
+        private static readonly IHttpModule[] Modules = new[] { new KoobooStoreHttpModule(), (IHttpModule)new MarketingHttpModule() };
         public override void Init(HttpApplication httpApplication)
         {
-            _modules.ForEach((m, i) => m.Init(httpApplication));
+            Modules.ForEach((m, i) => m.Init(httpApplication));
             ModelBinders.Binders[typeof(SearchParameters)] = new SearchParametersBinder();
         }
 
-        public override void Application_Start(object sender, System.EventArgs e)
+        public override void Application_Start(object sender, EventArgs e)
         {
             base.Application_Start(sender, e);
             ViewEngines.Engines.Insert(ViewEngines.Engines.Count, new SiteRazorViewEngine());
@@ -58,13 +58,32 @@ namespace Kooboo.VirtoCommerce.Extensions
             return context.Request.RequestContext.HttpContext.Membership().GetMember().Identity.Name;
         }
 
-        protected override void OnAuthenticateRequest(object sender, System.EventArgs e)
+        protected override void OnAuthenticateRequest(object sender, EventArgs e)
         {
             //base.OnAuthenticateRequest(sender, e);
             //do nothing here because kooboo membership is not ready
         }
 
-        protected override void OnPostAcquireRequestState(object sender, System.EventArgs e)
+        protected override void OnAuthenticateRequest(HttpContext context)
+        {
+            base.OnAuthenticateRequest(context);
+
+            var user = context.Request.RequestContext.HttpContext.Membership().GetMembershipUser();
+
+            if (user != null && user.Profiles != null && 
+                (user.Profiles.ContainsKey("FirstName") || user.Profiles.ContainsKey("LastName")))
+            {
+                CustomerSession.CustomerName = string.Format("{0} {1}",
+                                                             user.Profiles.ContainsKey("FirstName")
+                                                                 ? user.Profiles["FirstName"]
+                                                                 : "",
+                                                             user.Profiles.ContainsKey("LastName")
+                                                                 ? user.Profiles["LastName"]
+                                                                 : "");
+            }
+        }
+
+        protected override void OnPostAcquireRequestState(object sender, EventArgs e)
         {
             base.OnAuthenticateRequest(sender, e);
             base.OnPostAcquireRequestState(sender, e);
@@ -72,10 +91,9 @@ namespace Kooboo.VirtoCommerce.Extensions
 
         protected override void OnUnauthorized(HttpContext context)
         {
-            var user = context.Request.RequestContext.HttpContext.Membership().GetMembershipUser();
-
-            //Logout only if user profile is marked as connected to virto commerce account
-            if (user != null && user.Profiles != null && user.Profiles.ContainsKey("IsVirtoCommerce"))
+            var account = StoreHelper.UserClient.GetAccountByUserName(CustomerSession.Username);
+            //Logout only if not external login confirmation page
+            if (account != null)
             {
                 context.Request.RequestContext.HttpContext.Membership().SignOut();
             }

@@ -2,11 +2,9 @@
 using System.Web.Mvc;
 using Kooboo.CMS.Sites.Extension;
 using Kooboo.CMS.Sites.View;
-using VirtoCommerce.Client;
 using VirtoCommerce.Web.Controllers;
-using VirtoCommerce.Web.Virto.Helpers;
 
-namespace Kooboo.VirtoCommerce.Extensions
+namespace Kooboo.VirtoCommerce.Extensions.Plugins
 {
     [Description("Account plugin")]
     public class AccountPlugin : IHttpMethodPagePlugin
