@@ -1,4 +1,5 @@
 ﻿@model VirtoCommerce.Web.Models.OrderAddressModel
+@{ var user = HttpContext.Current.Request.RequestContext.HttpContext.Membership().GetMembershipUser(); }
 <div class="box-account box-info">
     <div class="box-head">
         <h2>
@@ -16,9 +17,12 @@
                     <p>
                         @Model.CurrentUser.FullName<br>
                         @Model.CurrentUser.Email<br>
-                        <a href="@Url.FrontUrl().PageUrl("Member/ChangePassword")">
-                            @("Change Password".Localize())
-                        </a>
+                        @if (string.IsNullOrEmpty(user.ProviderType))
+                        {
+                            <a href="@Url.FrontUrl().PageUrl("Member/ChangePassword")">
+                                @("Change Password".Localize())
+                            </a>
+                        }
                     </p>
                 </div>
             </div>
