@@ -161,6 +161,7 @@
     </Reference>
     <Reference Include="Microsoft.WindowsAzure.ServiceRuntime">
       <HintPath>..\lib\VCF\Microsoft.WindowsAzure.ServiceRuntime.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.WindowsAzure.Storage">
       <HintPath>..\lib\VCF\Microsoft.WindowsAzure.Storage.dll</HintPath>
