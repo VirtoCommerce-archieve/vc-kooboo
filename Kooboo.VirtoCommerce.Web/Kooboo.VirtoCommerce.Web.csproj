@@ -2608,6 +2608,7 @@
     </MonoDevelop>
   </ProjectExtensions>
   <PropertyGroup>
-    <PostBuildEvent>copy "$(ProjectDir)..\lib\Kooboo\*.*" "$(TargetDir)"</PostBuildEvent>
+    <PostBuildEvent>echo copy "$(ProjectDir)..\lib\Kooboo\*.*" "$(TargetDir)"
+copy "$(ProjectDir)..\lib\Kooboo\*.*" "$(TargetDir)"</PostBuildEvent>
   </PropertyGroup>
 </Project>
