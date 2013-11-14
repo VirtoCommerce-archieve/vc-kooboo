@@ -2,27 +2,25 @@
     <form class="ajaxForm" action="@Url.FrontUrl().SubmissionUrl("ForgotPassword", new { returnUrl = ViewContext.RequestContext.GetRequestValue("returnUrl") })" method="post">
         @Html.ValidationSummary(true)
         @Html.AntiForgeryToken()
-        <div class="member-form-main">
-            <table>
-                <tr class="field">
-                    <th>
-                        <label for="UserName">@("Username".Label())</label>
-                    </th>
-                    <td>
-                        <input class="" data-val="true" data-val-required="@("Required".RawLabel())" id="UserName" name="UserName"
-                            type="text" value="" autocomplete="off">
-                        @Html.ValidationMessage("UserName")
-                    </td>
-                </tr>              
-                <tr>
-                    <th></th>
-                    <td>
-                        <button type="submit">@("Send mail".Label())</button>
-                    </td>
-                </tr>
-            </table>
+        <div class="fieldset">
+            <h2 class="legend">@("Forgot Password".Label())</h2>
+            <ul class="form-list">
+                <li>
+                    <div class="field">
+                        <label for="UserName">@("Username".Label()):</label>
+                        <div class="input-box">
+                            <input class="" data-val="true" data-val-required="@("Required".RawLabel())" id="UserName" name="UserName"
+                                   type="text" value="" autocomplete="off">
+                            <br/>
+                            @Html.ValidationMessage("UserName")
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="buttons-set">
+            <button class="button" title="Send mail" type="submit">
+                <span><span>@("Send mail".Localize())</span></span></button>
         </div>
     </form>
-
-
 </div>
