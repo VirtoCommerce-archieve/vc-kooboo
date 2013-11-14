@@ -13,7 +13,7 @@ To setup this version do the following:
 
 
 This version is also automatically uploaded to windows azure website hosting and is available here:
-ttp://virtocommerce-cms.azurewebsites.net. The update is done after each checkin.
+http://virtocommerce-cms.azurewebsites.net. The update is done after each checkin.
 
 
 
