@@ -12,3 +12,8 @@ To setup this version do the following:
 4. Compile the source code, you should be able to see the sample site just like at http://demo.virtocommerce.com.
 
 
+This version is also automatically uploaded to windows azure website hosting and is available here:
+http://virtocommerce-cms.azurewebsites.net. The update is done after each checkin.
+
+Installing on Azure
+--------------

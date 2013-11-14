@@ -2702,4 +2702,7 @@ Are you sure you want to use this size?</value>
   <data name="Username already exist" xml:space="preserve">
     <value>Username already exist</value>
   </data>
+  <data name="Are you sure you want to publish this page?" xml:space="preserve">
+    <value>Are you sure you want to publish this page?</value>
+  </data>
 </root>
