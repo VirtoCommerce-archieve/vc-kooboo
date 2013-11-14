@@ -999,6 +999,7 @@
     <Content Include="Images\logo.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Kooboo.VirtoCommerce.Web.wpp.targets" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
