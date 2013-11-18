@@ -1,33 +1,44 @@
 ﻿<div class="block member-form common-form">
-    <form class="ajaxForm" action="@Url.FrontUrl().SubmissionUrl("ResetPassword",ViewContext.RequestContext.AllRouteValues())" method="post">
+    <form class="ajaxForm" action="@Url.FrontUrl().SubmissionUrl("ResetPassword", ViewContext.RequestContext.AllRouteValues())" method="post">
         @Html.ValidationSummary(true)
         @Html.AntiForgeryToken()
-        <table class="member-form-main single">           
-            <tr class="field">
-                <th>
+        <div class="fieldset">
+            <h2 class="legend">@("Change Password".Label())</h2>
+            <ul class="form-list">
+                <li>
                     <label for="NewPassword">@("New password".Label()):</label>
-                </th>
-                <td>
-                    <input id="NewPassword" name="NewPassword" type="password" @((new[] { Validator.Required("Required".RawLabel().ToString()).ClientValidationRule }).GenerateHtmlAttributes())>
-                    @Html.ValidationMessageForInput("NewPassword")
-                </td>
-            </tr>
-            <tr class="field">
-                <th>
-                    <label for="ConfirmPassword">@("Confirm password".Label()):</label>
-                </th>
-                <td>
-                    <input id="ConfirmPassword" name="ConfirmPassword"  type="password" @((new[] { Validator.Required("Required".RawLabel().ToString()).ClientValidationRule }).GenerateHtmlAttributes())
-                         data-val-equalto="@("'Confirm password' and 'New password' do not match.".RawLabel())" data-val-equalto-other="*.NewPassword" >
-                    @Html.ValidationMessageForInput("ConfirmPassword")
-                </td>
-            </tr>
-            <tr>
-                <th></th>
-                <td>
-                    <button type="submit">@("Submit".Label())</button>
-                </td>
-            </tr>
-        </table>
+                    <div class="input-box">
+                        <input id="NewPassword" name="NewPassword" type="password" @((new[] { Validator.Required("Required".RawLabel().ToString()).ClientValidationRule }).GenerateHtmlAttributes())>
+                        <br/>
+                        @Html.ValidationMessageForInput("NewPassword")
+                    </div>
+                </li>
+                <li>
+                    <div class="field">
+                        <label for="ConfirmPassword">@("Confirm password".Label()):</label>
+                        <div class="input-box">
+                            <input id="ConfirmPassword" name="ConfirmPassword"  type="password" @((new[] { Validator.Required("Required".RawLabel().ToString()).ClientValidationRule }).GenerateHtmlAttributes())
+                                   data-val-equalto="@("'Confirm password' and 'New password' do not match.".RawLabel())" data-val-equalto-other="*.NewPassword" >
+                            <br/>
+                            @Html.ValidationMessageForInput("ConfirmPassword")
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="field">
+                        <label for="ActivateCode">@("Activation code".Label()):</label>
+                        <div class="input-box">
+                            <input id="ActivateCode" name="ActivateCode"  type="text" @((new[] { Validator.Required("Required".RawLabel().ToString()).ClientValidationRule }).GenerateHtmlAttributes()) value="@Request.QueryString["code"]" readonly="readonly">
+                            <br/>
+                            @Html.ValidationMessageForInput("ActivateCode")
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="buttons-set">
+            <button class="button" title="Send mail" type="submit">
+                <span><span>@("Submit".Localize())</span></span></button>
+        </div>
     </form>
 </div>
