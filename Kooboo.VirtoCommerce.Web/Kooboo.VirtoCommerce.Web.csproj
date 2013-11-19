@@ -999,6 +999,12 @@
     <Content Include="Images\logo.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Cms_Data\Sites\VirtoCommerce\Templates\Views\Proxy.Account.WishList\setting.config" />
+    <Content Include="Cms_Data\Sites\VirtoCommerce\Templates\Views\Proxy.Account.WishList\template.cshtml" />
+    <Content Include="Cms_Data\Sites\VirtoCommerce\Templates\Views\Account.Editor.LineItem\setting.config" />
+    <Content Include="Cms_Data\Sites\VirtoCommerce\Templates\Views\Account.Editor.LineItem\template.cshtml" />
+    <Content Include="Cms_Data\Sites\VirtoCommerce\Templates\Views\Account.WishList\setting.config" />
+    <Content Include="Cms_Data\Sites\VirtoCommerce\Templates\Views\Account.WishList\template.cshtml" />
     <None Include="Kooboo.VirtoCommerce.Web.wpp.targets" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -1521,7 +1527,7 @@
     <Content Include="Cms_Data\Sites\VirtoCommerce\Templates\Views\Account.Display.Orders\template.cshtml" />
     <Content Include="Cms_Data\Sites\VirtoCommerce\Pages\Member\AddressBook\setting.config" />
     <Content Include="Cms_Data\Sites\VirtoCommerce\Pages\Member\Orders\setting.config" />
-    <Content Include="Cms_Data\Sites\VirtoCommerce\Pages\Member\Whishlist\setting.config" />
+    <Content Include="Cms_Data\Sites\VirtoCommerce\Pages\Member\Wishlist\setting.config" />
     <Content Include="Cms_Data\Sites\VirtoCommerce\Pages\Member\Returns\setting.config" />
     <None Include="Properties\PublishProfiles\Publish.pubxml" />
     <Content Include="Images\svg-edit.png" />

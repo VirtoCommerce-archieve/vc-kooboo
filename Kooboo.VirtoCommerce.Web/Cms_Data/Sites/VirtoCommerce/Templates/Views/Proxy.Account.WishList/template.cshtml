@@ -1,0 +1,112 @@
+﻿@using VirtoCommerce.Web.Virto.Helpers
+@model VirtoCommerce.Web.Models.CartModel
+
+<script type="text/javascript">
+    function focusComment(obj)
+    {
+        if (obj.value == '@UserHelper.DefaultCommentInWishList')
+	    {
+	        obj.value = '';
+	    } else if (obj.value == '')
+	    {
+	        obj.value = '@UserHelper.DefaultCommentInWishList';
+		}
+}
+
+function AddAllToCart()
+{
+    $('#ActionTypeField')[0].value = '@UserHelper.AddToCartAction';
+	    return true;
+	}
+
+	$(document).ready(function ()
+	{
+	    $('.commentArea').each(function ()
+	    {
+	        if ($(this)[0].value == "")
+	            $(this)[0].value = "@UserHelper.DefaultCommentInWishList";
+		});
+	});
+</script>
+<ul id="messages" class="messages"></ul>
+<div class="my-wishlist">
+
+    <div class="page-title title-buttons">
+        <h1>@("My Wishlist".Localize())</h1>
+    </div>
+    @if (Model.LineItems == null || !Model.LineItems.Any())
+    {
+
+        <p>@("You have no items in your wishlist.".Localize())</p>
+ }
+    else
+    {
+        using (Html.BeginForm("UpdateWishList", "Account", new {area="VirtoCommerce"}, FormMethod.Post))
+        {
+
+        <input type="hidden" name="ActionType" value="" id="ActionTypeField" />
+
+        <table id="wishlist-table" class="data-table">
+            <colgroup>
+                <col width="1">
+                <col />
+                <col width="1">
+                <col width="1">
+                <col width="1">
+            </colgroup>
+            <thead>
+                <tr class="first last">
+                    <th>
+                        @("Product".Localize())
+                    </th>
+                    <th>
+                        @("Comment".Localize())
+                    </th>
+                    <th class="a-center">
+                        <span class="nobr">@("Added On".Localize())</span>
+                    </th>
+                    <th class="a-center">
+                        <span class="nobr">@("Add to Cart".Localize())</span>
+                    </th>
+                    <th>&nbsp;
+					</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @for (var i = 0; i < Model.LineItems.Count(); i++)
+                {
+                     @Html.FrontHtml().RenderView("Account.Editor.LineItem", 
+                     new ViewDataDictionary(ViewData) { Model = Model.LineItems[i] }, 
+                     new { HtmlFieldPrefix = string.Format("LineItems[{0}]", i) })
+                }
+            </tbody>
+        </table>
+	 
+
+
+        <div class="buttons-set buttons-set2">
+            @*			<a href="@Url.Action("ShareWishList", "Account")">
+				<button class="button btn-share" title="Share Wishlist" type="button">
+					<span><span>Share Wishlist</span></span>
+				</button>
+			</a>*@
+
+            <button class="button btn-add" title="Add All to Cart"
+                type="submit" onclick="AddAllToCart();">
+                <span><span>@("Add All to Cart".Localize())</span></span>
+            </button>
+
+            <button class="button btn-update" title="Update Wishlist"
+                type="submit">
+                <span><span>@("Update Wishlist".Localize())</span></span>
+            </button>
+
+        </div>
+    }
+ }
+</div>
+
+<div class="buttons-set">
+    <p class="back-link"><a href="@Url.FrontUrl().PageUrl("member")"><small>« </small>@("Back".Localize())</a></p>
+</div>

@@ -287,6 +287,7 @@
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="CommerceAreaRegistration.cs" />
     <Compile Include="Extensions\Plugins\AccountPlugin.cs" />
+    <Compile Include="Extensions\Plugins\WishlistPlugin.cs" />
     <Compile Include="Extensions\Plugins\ExternalRegistrationConfirmationPlugin.cs" />
     <Compile Include="Extensions\KoobooAjaxExtensions.cs" />
     <Compile Include="Extensions\SiteViewEngine.cs" />
