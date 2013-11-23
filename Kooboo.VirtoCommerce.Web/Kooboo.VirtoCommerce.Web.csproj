@@ -805,6 +805,7 @@
     <Content Include="Cms_Data\Sites\VirtoCommerce\Themes\default\widgets.css" />
     <Content Include="Cms_Data\SiteTemplates\SampleSite.png" />
     <Content Include="Cms_Data\SiteTemplates\SmallBusiness.png" />
+    <Content Include="Cms_Data\SiteTemplates\VirtoCommerce.png" />
     <Content Include="Cms_Data\SiteTemplates\WorkCenter.PNG" />
     <Content Include="Cms_Data\SiteTemplates\WwHopeCenter.png" />
     <Content Include="Content\Site.css" />
@@ -999,6 +1000,7 @@
     <Content Include="Images\logo.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Cms_Data\SiteTemplates\VirtoCommerce.zip" />
     <None Include="Kooboo.VirtoCommerce.Web.wpp.targets" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
