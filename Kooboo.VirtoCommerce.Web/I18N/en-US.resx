@@ -2705,4 +2705,31 @@ Are you sure you want to use this size?</value>
   <data name="Are you sure you want to publish this page?" xml:space="preserve">
     <value>Are you sure you want to publish this page?</value>
   </data>
+  <data name="Send mail" xml:space="preserve">
+    <value>Send mail</value>
+  </data>
+  <data name="You have no items in your wishlist." xml:space="preserve">
+    <value>You have no items in your wishlist.</value>
+  </data>
+  <data name="Subscribe to RSS Feed" xml:space="preserve">
+    <value>Subscribe to RSS Feed</value>
+  </data>
+  <data name="Select Your Currency." xml:space="preserve">
+    <value>Select Your Currency.</value>
+  </data>
+  <data name="Added On" xml:space="preserve">
+    <value>Added On</value>
+  </data>
+  <data name="Configured Price:" xml:space="preserve">
+    <value>Configured Price:</value>
+  </data>
+  <data name="Are you sure you would like to remove this item from the wish list?" xml:space="preserve">
+    <value>Are you sure you would like to remove this item from the wish list?</value>
+  </data>
+  <data name="Add All to Cart" xml:space="preserve">
+    <value>Add All to Cart</value>
+  </data>
+  <data name="Update Wishlist" xml:space="preserve">
+    <value>Update Wishlist</value>
+  </data>
 </root>

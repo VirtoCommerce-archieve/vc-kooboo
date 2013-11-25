@@ -162,15 +162,16 @@ VirtoCart.prototype = {
             if ($("#MiniCartContainer").length > 0) {
                 $("#MiniCartContainer").html(context.LineItemsView);
             }
+        } else {
+            $('#row-' + context.DeleteId).fadeOut('slow');
         }
-        //$('#row-' + context.DeleteId).fadeOut('slow');
-        //$('#cart-status').text('Cart (' + data.CartCount + ')');
+
         $('#cart-count').html(context.CartCount + ' items');
         $('#cart-subtotal').html(context.CartSubTotal);
         $('#cart-total').html(context.CartTotal);
         $('#messages').html("<li class=\"success-msg\"><ul><li><span>" + context.Message + "</span></li></ul></li>");
         //$('#update-message').parent().css({ display: "block" });
-        VirtoCommerce.updateQuickLinks();
+        //VirtoCommerce.updateQuickLinks();
     },
 
     onCompareListUpdate: function (context) {
