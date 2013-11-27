@@ -7,6 +7,7 @@ using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Kooboo.CMS.Sites.Web;
 using VirtoCommerce.Client;
 using VirtoCommerce.Foundation.Stores.Model;
 using VirtoCommerce.Web.Client.Helpers;
@@ -70,7 +71,7 @@ namespace Kooboo.VirtoCommerce.Extensions
 
             var user = context.Request.RequestContext.HttpContext.Membership().GetMembershipUser();
 
-            if (user != null && user.Profiles != null && 
+            if (user != null && user.Profiles != null &&
                 (user.Profiles.ContainsKey("FirstName") || user.Profiles.ContainsKey("LastName")))
             {
                 CustomerSession.CustomerName = string.Format("{0} {1}",
@@ -102,28 +103,26 @@ namespace Kooboo.VirtoCommerce.Extensions
         protected override Store GetStore(HttpContext context)
         {
             // try getting store from the cookie
-            var storeid = StoreHelper.GetCookieValue(StoreCookie, false);
+            var storeid = string.Empty;//StoreHelper.GetCookieValue(StoreCookie, false);
             var storeClient = DependencyResolver.Current.GetService<StoreClient>();
             Store store = null;
+            var site = Site.Current;
+
+            if (site == null)
+            {
+                var contextWrapper = new FrontHttpContextWrapper(context);
+                site = ((FrontHttpRequestWrapper)contextWrapper.Request).Site;
+            }
 
             // try getting default store from settings
+            if (site != null)
+            {
+                storeid = Site.Current.CustomFields["VCStoreId"];
+            }
+
             if (String.IsNullOrEmpty(storeid))
             {
-                if (Site.Current == null)
-                {
-                    //manually load site (TODO: hardcoded VirtoCommerce!!!)
-                    Site.Current = (SiteHelper.Parse("VirtoCommerce")).AsActual();
-                }
-
-                if (Site.Current != null)
-                {
-                    storeid = Site.Current.CustomFields["VCStoreId"];
-
-                    if (String.IsNullOrEmpty(storeid))
-                    {
-                        storeid = ConfigurationManager.AppSettings["DefaultStore"];
-                    }
-                }
+                storeid = ConfigurationManager.AppSettings["DefaultStore"];
             }
 
             if (!String.IsNullOrEmpty(storeid))

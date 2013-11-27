@@ -2732,4 +2732,40 @@ Are you sure you want to use this size?</value>
   <data name="Update Wishlist" xml:space="preserve">
     <value>Update Wishlist</value>
   </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="Account Information" xml:space="preserve">
+    <value>Account Information</value>
+  </data>
+  <data name="Contact Information" xml:space="preserve">
+    <value>Contact Information</value>
+  </data>
+  <data name="Newsletters" xml:space="preserve">
+    <value>Newsletters</value>
+  </data>
+  <data name="You are currently not subscribed to any newsletter." xml:space="preserve">
+    <value>You are currently not subscribed to any newsletter.</value>
+  </data>
+  <data name="Address Book" xml:space="preserve">
+    <value>Address Book</value>
+  </data>
+  <data name="Manage Addresses" xml:space="preserve">
+    <value>Manage Addresses</value>
+  </data>
+  <data name="Default Billing Address" xml:space="preserve">
+    <value>Default Billing Address</value>
+  </data>
+  <data name="You have no Default Billing Address" xml:space="preserve">
+    <value>You have no Default Billing Address</value>
+  </data>
+  <data name="Default Shipping Address" xml:space="preserve">
+    <value>Default Shipping Address</value>
+  </data>
+  <data name="You have no Default Shipping Address" xml:space="preserve">
+    <value>You have no Default Shipping Address</value>
+  </data>
+  <data name="There are no results available." xml:space="preserve">
+    <value>There are no results available.</value>
+  </data>
 </root>
