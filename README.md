@@ -17,3 +17,5 @@ http://virtocommerce-cms.azurewebsites.net. The update is done after each checki
 
 Installing on Azure
 --------------
+
+Coming soon
