@@ -1007,6 +1007,8 @@
     <Content Include="Cms_Data\Sites\VirtoCommerce\Templates\Views\Account.WishList\setting.config" />
     <Content Include="Cms_Data\Sites\VirtoCommerce\Templates\Views\Account.WishList\template.cshtml" />
     <Content Include="Cms_Data\SiteTemplates\VirtoCommerce.zip" />
+    <Content Include="Areas\Sites\Views\Shared\_ChooseDataRuleType.cshtml" />
+    <Content Include="Areas\Sites\Views\Home\UnsyncedPageNode.cshtml" />
     <None Include="Kooboo.VirtoCommerce.Web.wpp.targets" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -2348,6 +2350,8 @@
     <Content Include="Scripts\jquery-ui-i18n\jquery.ui.datepicker-zh.js" />
     <Content Include="Scripts\jquery-ui-i18n\jquery.ui.datepicker-zu-ZA.js" />
     <Content Include="Scripts\jquery-ui-i18n\jquery.ui.datepicker-zu.js" />
+    <Content Include="Scripts\jquery-ui-timepicker-addon\jquery-ui-sliderAccess.js" />
+    <Content Include="Scripts\jquery-ui-timepicker-addon\jquery-ui-timepicker-addon.js" />
     <Content Include="Scripts\jquery-ui.js" />
     <Content Include="Scripts\jquery.autosize.js" />
     <Content Include="Scripts\jquery.cookie.js" />
@@ -2480,6 +2484,7 @@
     <Content Include="Styles\images\media-library.png" />
     <Content Include="Styles\images\stripe.png" />
     <Content Include="Styles\InlineEditing.css" />
+    <Content Include="Styles\jquery-ui-timepicker-addon.css" />
     <Content Include="Styles\jquery-ui.css" />
     <Content Include="Styles\jQuery.jCrop\Jcrop.gif" />
     <Content Include="Styles\jQuery.jCrop\jquery.Jcrop.css" />
@@ -2559,6 +2564,8 @@
     <Content Include="Views\Shared\EditorTemplates\UploadOrSelect.cshtml" />
     <Content Include="Styles\images\arrows.psd" />
     <Content Include="Styles\images\icons.psd" />
+    <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Spinner.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

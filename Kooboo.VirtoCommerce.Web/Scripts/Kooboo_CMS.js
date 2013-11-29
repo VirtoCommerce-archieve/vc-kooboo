@@ -307,7 +307,7 @@ function parse_JsonResultData(response, statusText, xhr, $form) {
                     break;
             }
             var show_on_selector = $related.data('show-on-selector');
-            if (show_on_selector) {
+            if (show_on_selector) {               
                 if ($all_checkeds.closest(itemTag + ':not(' + show_on_selector + ')').length > 0) {
                     $related.hide();
                 }

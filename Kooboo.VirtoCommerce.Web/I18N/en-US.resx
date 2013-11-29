@@ -2768,4 +2768,115 @@ Are you sure you want to use this size?</value>
   <data name="There are no results available." xml:space="preserve">
     <value>There are no results available.</value>
   </data>
+  <data name="Export the site" xml:space="preserve">
+    <value>Export the site</value>
+  </data>
+  <data name="The Export type field is required." xml:space="preserve">
+    <value>The Export type field is required.</value>
+  </data>
+  <data name="Export type" xml:space="preserve">
+    <value>Export type</value>
+  </data>
+  <data name="The Include sub sites field is required." xml:space="preserve">
+    <value>The Include sub sites field is required.</value>
+  </data>
+  <data name="Include sub sites" xml:space="preserve">
+    <value>Include sub sites</value>
+  </data>
+  <data name="The repository is offline, please remove this file to take it online." xml:space="preserve">
+    <value>The repository is offline, please remove this file to take it online.</value>
+  </data>
+  <data name="Available" xml:space="preserve">
+    <value>Available</value>
+  </data>
+  <data name="Not avaliable" xml:space="preserve">
+    <value>Not avaliable</value>
+  </data>
+  <data name="Completed" xml:space="preserve">
+    <value>Completed</value>
+  </data>
+  <data name="1. Database" xml:space="preserve">
+    <value>1. Database</value>
+  </data>
+  <data name="Create a database to store your content" xml:space="preserve">
+    <value>Create a database to store your content</value>
+  </data>
+  <data name="2. Setting" xml:space="preserve">
+    <value>2. Setting</value>
+  </data>
+  <data name="Create folders or content types with custom fields" xml:space="preserve">
+    <value>Create folders or content types with custom fields</value>
+  </data>
+  <data name="3. Content " xml:space="preserve">
+    <value>3. Content </value>
+  </data>
+  <data name="Create text content &lt;br /&gt; or upload media files" xml:space="preserve">
+    <value>Create text content &lt;br /&gt; or upload media files</value>
+  </data>
+  <data name="Create a database" xml:space="preserve">
+    <value>Create a database</value>
+  </data>
+  <data name="Add content type" xml:space="preserve">
+    <value>Add content type</value>
+  </data>
+  <data name="Add text folder" xml:space="preserve">
+    <value>Add text folder</value>
+  </data>
+  <data name="Add text content" xml:space="preserve">
+    <value>Add text content</value>
+  </data>
+  <data name="Add media files" xml:space="preserve">
+    <value>Add media files</value>
+  </data>
+  <data name="Unsynced page" xml:space="preserve">
+    <value>Unsynced page</value>
+  </data>
+  <data name="Edit data rule" xml:space="preserve">
+    <value>Edit data rule</value>
+  </data>
+  <data name="Choose data rule type" xml:space="preserve">
+    <value>Choose data rule type</value>
+  </data>
+  <data name="Choose Folder" xml:space="preserve">
+    <value>Choose Folder</value>
+  </data>
+  <data name="Edit Filters" xml:space="preserve">
+    <value>Edit Filters</value>
+  </data>
+  <data name="Edit HTTP" xml:space="preserve">
+    <value>Edit HTTP</value>
+  </data>
+  <data name="Data rule type" xml:space="preserve">
+    <value>Data rule type</value>
+  </data>
+  <data name="Kooboo content repository" xml:space="preserve">
+    <value>Kooboo content repository</value>
+  </data>
+  <data name="Directly query content from Kooboo data folder." xml:space="preserve">
+    <value>Directly query content from Kooboo data folder.</value>
+  </data>
+  <data name="Query from HTTP" xml:space="preserve">
+    <value>Query from HTTP</value>
+  </data>
+  <data name="Query content from HTTP URI, HTTP URI must response with a Json or XML data source." xml:space="preserve">
+    <value>Query content from HTTP URI, HTTP URI must response with a Json or XML data source.</value>
+  </data>
+  <data name="The URL that responses with Json/XML data source &lt;br /&gt; You can use {QueryString} to match the keys in your page url &lt;br /&gt; Example:http://www.kooboo.com/product/{userkey}" xml:space="preserve">
+    <value>The URL that responses with Json/XML data source &lt;br /&gt; You can use {QueryString} to match the keys in your page url &lt;br /&gt; Example:http://www.kooboo.com/product/{userkey}</value>
+  </data>
+  <data name="HTTP method" xml:space="preserve">
+    <value>HTTP method</value>
+  </data>
+  <data name="GET" xml:space="preserve">
+    <value>GET</value>
+  </data>
+  <data name="POST" xml:space="preserve">
+    <value>POST</value>
+  </data>
+  <data name="Form data" xml:space="preserve">
+    <value>Form data</value>
+  </data>
+  <data name="HTTP headers" xml:space="preserve">
+    <value>HTTP headers</value>
+  </data>
 </root>
