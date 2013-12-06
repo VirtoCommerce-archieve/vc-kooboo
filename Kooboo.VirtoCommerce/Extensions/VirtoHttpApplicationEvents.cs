@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using Kooboo.CMS.Sites.Web;
 using VirtoCommerce.Client;
+using VirtoCommerce.Foundation.AppConfig;
 using VirtoCommerce.Foundation.Stores.Model;
 using VirtoCommerce.Web.Client.Helpers;
 using VirtoCommerce.Web.Client.Modules;
@@ -24,10 +25,14 @@ namespace Kooboo.VirtoCommerce.Extensions
     public class VirtoHttpApplicationEvents : HttpApplicationEvents
     {
         private static readonly IHttpModule[] Modules = new[] { new KoobooStoreHttpModule(), (IHttpModule)new MarketingHttpModule() };
+
         public override void Init(HttpApplication httpApplication)
         {
-            Modules.ForEach((m, i) => m.Init(httpApplication));
-            ModelBinders.Binders[typeof(SearchParameters)] = new SearchParametersBinder();
+            if (AppConfigConfiguration.Instance.Setup.IsCompleted)
+            {
+                Modules.ForEach((m, i) => m.Init(httpApplication));
+                ModelBinders.Binders[typeof (SearchParameters)] = new SearchParametersBinder();
+            }
         }
 
         public override void Application_Start(object sender, EventArgs e)

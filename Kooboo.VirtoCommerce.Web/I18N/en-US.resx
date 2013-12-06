@@ -2879,4 +2879,22 @@ Are you sure you want to use this size?</value>
   <data name="HTTP headers" xml:space="preserve">
     <value>HTTP headers</value>
   </data>
+  <data name="Database server is required." xml:space="preserve">
+    <value>Database server is required.</value>
+  </data>
+  <data name="Database name is required." xml:space="preserve">
+    <value>Database name is required.</value>
+  </data>
+  <data name="Database user name is required." xml:space="preserve">
+    <value>Database user name is required.</value>
+  </data>
+  <data name="Database user password is required." xml:space="preserve">
+    <value>Database user password is required.</value>
+  </data>
+  <data name="The Create sample store field is required." xml:space="preserve">
+    <value>The Create sample store field is required.</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Update</value>
+  </data>
 </root>

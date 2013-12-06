@@ -2,6 +2,7 @@
 using Kooboo.Web.Mvc;
 using System.IO;
 using System.Web.Mvc;
+using VirtoCommerce.Foundation.AppConfig;
 
 namespace Kooboo.VirtoCommerce
 {
@@ -18,7 +19,12 @@ namespace Kooboo.VirtoCommerce
 
         public override void RegisterArea(AreaRegistrationContext context)
         {
-			WebApiConfig.Register(GlobalConfiguration.Configuration);
+            if (!AppConfigConfiguration.Instance.Setup.IsCompleted)
+            {
+                return;
+            }
+
+            WebApiConfig.Register(GlobalConfiguration.Configuration);
             context.MapRoute(
                 "Commerce_default",
                 "Commerce/{controller}/{action}/{id}",
