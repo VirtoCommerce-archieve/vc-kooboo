@@ -205,6 +205,9 @@
     <Content Include="Areas\Sites\Scripts\inlineEdit\anchor\images\menu_delete.png" />
     <Content Include="Areas\Sites\Scripts\inlineEdit\anchor\images\menu_edit.png" />
     <Content Include="Areas\Sites\Scripts\inlineEdit\anchor\images\menu_publish.png" />
+    <Content Include="Areas\VirtoAdmin\Content\Images\InProgress.GIF" />
+    <Content Include="Areas\VirtoAdmin\Content\Images\VirtoCommerce.png" />
+    <Content Include="Areas\VirtoAdmin\Content\site.css" />
     <Content Include="Cms_Data\Contents\VirtoCommerce\Data\_category_.xml" />
     <Content Include="Cms_Data\Sites\VirtoCommerce\Scripts\app.js" />
     <Content Include="Cms_Data\Sites\VirtoCommerce\Scripts\jquery-tmpl-min.js" />
@@ -1009,6 +1012,8 @@
     <Content Include="Cms_Data\SiteTemplates\VirtoCommerce.zip" />
     <Content Include="Areas\Sites\Views\Shared\_ChooseDataRuleType.cshtml" />
     <Content Include="Areas\Sites\Views\Home\UnsyncedPageNode.cshtml" />
+    <Content Include="Areas\VirtoAdmin\Views\Install\Index.cshtml" />
+    <Content Include="Areas\VirtoAdmin\Views\Web.config" />
     <None Include="Kooboo.VirtoCommerce.Web.wpp.targets" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
