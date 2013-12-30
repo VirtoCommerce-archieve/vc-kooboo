@@ -16,4 +16,4 @@ This version is also automatically uploaded to windows azure website hosting and
 http://virtocommerce-cms.azurewebsites.net. The update is done after each checkin.
 
 Installing on Azure
---------------
+----------------
