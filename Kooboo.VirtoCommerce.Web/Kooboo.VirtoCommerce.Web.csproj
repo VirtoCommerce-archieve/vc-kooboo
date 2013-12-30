@@ -74,6 +74,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\Kooboo\Kooboo.CMS.Sites.dll</HintPath>
     </Reference>
+    <Reference Include="Lucene.Net, Version=3.0.3.0, Culture=neutral, PublicKeyToken=85089178b9ac3181, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\VCF\Lucene.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="Lucene.Net.Contrib.SpellChecker, Version=3.0.3.0, Culture=neutral, PublicKeyToken=85089178b9ac3181, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\VCF\Lucene.Net.Contrib.SpellChecker.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Data.Edm, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -1281,7 +1289,9 @@
     <Content Include="Areas\VirtoCommerce\WebResources.config" />
     <Content Include="Cms_Data\Sites\VirtoCommerce\Empty.zip" />
     <Content Include="Cms_Data\Sites\VirtoCommerce\Pages\Home\setting.config" />
-    <Content Include="Cms_Data\Sites\VirtoCommerce\setting.config" />
+    <Content Include="Cms_Data\Sites\VirtoCommerce\setting.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Cms_Data\Sites\VirtoCommerce\Templates\Layouts\_BaseLayout\setting.config" />
     <Content Include="Cms_Data\Sites\VirtoCommerce\Templates\Layouts\_BaseLayout\template.cshtml" />
     <Content Include="Cms_Data\Sites\VirtoCommerce\Templates\Layouts\_HomeLayout\setting.config" />
@@ -2604,11 +2614,12 @@
     <VisualStudio>
       <FlavorProperties GUID="{349C5851-65DF-11DA-9384-00065B846F21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>31706</DevelopmentServerPort>
+          <DevelopmentServerPort>55083</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:2216/</IISUrl>
+          <IISUrl>
+          </IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
